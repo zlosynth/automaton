@@ -1,7 +1,7 @@
-#N canvas 960 45 476 1001 10;
+#N canvas 0 45 1916 1001 10;
 #X declare -path patch_editor_abs;
 #X obj 13 701 declare -path patch_editor_abs;
-#N canvas 447 23 707 551 patch-editor-do-not-delete 0;
+#N canvas 447 23 1916 1001 patch-editor-do-not-delete 0;
 #X msg 26 128 \; pd dsp 0;
 #X obj 26 34 loadbang;
 #X obj 26 103 delay 1;
@@ -10,7 +10,7 @@
 #X obj 89 6 key;
 #X obj 89 50 s SAVE-R;
 #X obj 89 28 sel 10;
-#N canvas 73 39 407 579 oscillators 0;
+#N canvas 73 39 1916 1001 oscillators 0;
 #N canvas 0 22 488 606 open-karplus 0;
 #X msg 64 84 bang;
 #X obj 64 151 t b b b;
@@ -173,7 +173,7 @@
 #X connect 21 0 0 0;
 #X connect 22 0 9 0;
 #X restore 28 212 pd open-snare;
-#N canvas 322 46 483 603 open-basic-osc 0;
+#N canvas 322 46 1916 1001 open-basic-osc 0;
 #X msg 64 84 bang;
 #X obj 64 151 t b b b;
 #X obj 162 168 f;
@@ -188,7 +188,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -5178,7 +5178,7 @@ more elaborate pd-code for deeper control.;
 #X obj 204 151 r open-organelle-map!;
 #X msg 204 198 \; pd-organelle-map vis \$1;
 #X obj 203 272 r open-modules!;
-#N canvas 549 23 476 1001 modules 1;
+#N canvas 0 45 1916 1001 modules 0;
 #X obj 196 91 cnv 15 180 15 empty empty MODULATION: 10 8 0 12 #9898dc
 #fcfcfc 0;
 #X obj 196 112 bng 15 250 50 0 \$0-create-basic-lfo! empty <--BASIC-LFO
@@ -5231,7 +5231,7 @@ more elaborate pd-code for deeper control.;
 8 0 12 #9898dc #fcfcfc 0;
 #X obj 568 91 cnv 15 180 15 empty empty UTILITY&LOGIC: 10 8 0 12 #9898dc
 #fcfcfc 0;
-#X obj 10 496 cnv 15 180 15 empty empty SEQUENCERS: 10 8 0 12 #9898dc
+#X obj 10 522 cnv 15 180 15 empty empty SEQUENCERS: 10 8 0 12 #9898dc
 #fcfcfc 0;
 #X obj 196 271 bng 15 250 50 0 \$0-create-s&h! empty <--S&H(sample&hold)
 17 7 0 10 #fcfcfc #000000 #000000;
@@ -5269,9 +5269,9 @@ more elaborate pd-code for deeper control.;
 17 7 0 10 #90d4b0 #000000 #000000;
 #X obj 569 111 bng 15 250 50 0 \$0-create-clock! empty <--CLOCK 17
 7 0 10 #fcfcfc #000000 #000000;
-#X obj 10 516 bng 15 250 50 0 \$0-create-8steps! empty <--8STEPS 17
+#X obj 10 542 bng 15 250 50 0 \$0-create-8steps! empty <--8STEPS 17
 7 0 10 #fcfcfc #000000 #000000;
-#X obj 10 536 bng 15 250 50 0 \$0-create-mega-sequencer! empty <--MEGA-SEQUENCER!
+#X obj 10 562 bng 15 250 50 0 \$0-create-mega-sequencer! empty <--MEGA-SEQUENCER!
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 569 350 bng 15 250 50 0 \$0-create-4to1-switch! empty <--4TO1-SWITCH
 17 7 0 10 #fcfcfc #000000 #000000;
@@ -5301,7 +5301,7 @@ more elaborate pd-code for deeper control.;
 17 7 0 10 #9898dc #000000 #000000;
 #X obj 196 152 bng 15 250 50 0 \$0-create-ahr! empty <--ATTACK-HOLD-RELEASE(ahr)
 17 7 0 10 #fcfcfc #000000 #000000;
-#X obj 10 556 bng 15 250 50 0 \$0-create-trigger-seq! empty <--TRIGGER-SEQ
+#X obj 10 582 bng 15 250 50 0 \$0-create-trigger-seq! empty <--TRIGGER-SEQ
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 569 371 bng 15 250 50 0 \$0-create-1to4-switch! empty <--1TO4-SWITCH
 17 7 0 10 #fcfcfc #000000 #000000;
@@ -5363,11 +5363,11 @@ more elaborate pd-code for deeper control.;
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 383 485 bng 15 250 50 0 \$0-create-compressor! empty <--COMPRESSOR
 17 7 0 10 #9898dc #000000 #000000;
-#X obj 10 593 bng 15 250 50 0 \$0-create-ratchet-seq! empty <--RATCHET-SEQ
+#X obj 10 619 bng 15 250 50 0 \$0-create-ratchet-seq! empty <--RATCHET-SEQ
 17 7 0 10 #9898dc #000000 #000000;
 #X obj 10 436 bng 15 250 50 0 \$0-create-sampler! empty <--SAMPLER
 17 7 0 10 #90d4b0 #000000 #000000;
-#X obj 10 575 bng 15 250 50 0 \$0-create-gate-seq! empty <--GATE-SEQ
+#X obj 10 601 bng 15 250 50 0 \$0-create-gate-seq! empty <--GATE-SEQ
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 10 456 bng 15 250 50 0 \$0-create-chord-synth! empty <--CHORD-SYNTH
 17 7 0 10 #9898dc #000000 #000000;
@@ -5399,6 +5399,9 @@ more elaborate pd-code for deeper control.;
 buttons);
 #X text 436 672 (New & updated modules for Automatonism v2.0 have GREEN
 buttons);
+#X text 435 738 (New modules for Zlosynth have PINK buttons);
+#X obj 10 496 bng 15 250 50 0 \$0-create-achordion! empty <--ACHORDION
+17 7 0 10 #ff98dc #000000 #000000;
 #X restore 204 249 pd modules;
 #X msg 203 324 \; pd-modules vis \$1;
 #X msg 203 294 1;
@@ -6585,6 +6588,62 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 22 0 9 0;
 #X restore 20 147 pd open-random-time-manager;
 #X restore 22 405 pd macro-structural-tools;
+#N canvas 0 0 1916 1001 zlosynth 0;
+#N canvas 322 46 1916 1001 open-achordion 0;
+#X msg 64 84 bang;
+#X obj 64 151 t b b b;
+#X obj 162 168 f;
+#X obj 191 168 + 1;
+#X obj 162 257 + 1;
+#X obj 223 101 delay 250;
+#X msg 223 211 \; pd-modules vis 0;
+#X obj 223 123 t b b;
+#X msg 250 171 \; pd-main.pd editmode 1;
+#X obj 83 316 pack s f;
+#X obj 177 38 r \$0-reset!;
+#X msg 177 60 0;
+#X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
+#X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 2 256;
+#X obj 64 387 t b b;
+#X msg 64 509 loadbang;
+#X obj 91 411 s SAVE-S;
+#X obj 64 462 delay 100;
+#X obj 308 316 f;
+#X obj 308 278 loadbang;
+#X obj 162 299 t f f;
+#X obj 64 17 r \$0-create-achordion!;
+#X msg 83 235 achordion;
+#X obj 65 562 s pd-achordion.pd;
+#X connect 0 0 1 0;
+#X connect 0 0 5 0;
+#X connect 1 0 14 0;
+#X connect 1 1 22 0;
+#X connect 1 2 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 4 0 13 0;
+#X connect 5 0 7 0;
+#X connect 7 0 6 0;
+#X connect 7 1 8 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 11 0 2 1;
+#X connect 11 0 13 0;
+#X connect 13 0 20 0;
+#X connect 14 0 17 0;
+#X connect 14 1 16 0;
+#X connect 15 0 23 0;
+#X connect 17 0 15 0;
+#X connect 18 0 2 1;
+#X connect 19 0 18 0;
+#X connect 20 0 9 1;
+#X connect 20 1 18 1;
+#X connect 21 0 0 0;
+#X connect 22 0 9 0;
+#X restore 28 17 pd open-achordion;
+#X restore 21 428 pd zlosynth;
 #X connect 1 0 3 0;
 #X connect 2 0 0 0;
 #X connect 3 0 2 0;
@@ -6613,3 +6672,4 @@ and send to the name of the module \, for example [s basic-osc];
 #X floatatom 8 146 5 0 0 1 CPU% CPU - 0;
 #X obj 8 105 bng 15 250 50 0 open-reset-warning! empty <--RESET! 17
 7 0 10 #fcfcfc #000000 #000000;
+#X obj 671 389 achordion 2;
