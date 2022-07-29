@@ -1,7 +1,7 @@
-# Automation
+# Automaton
 
-Fork of [Automatonism](https://www.automatonism.com/) extended with Zlosynth
-instruments.
+Fork of [Automatonism](https://www.automatonism.com/) 3.0 extended with Zlosynth
+modules.
 
 # Usage
 
