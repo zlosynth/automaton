@@ -26,7 +26,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -80,7 +80,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -188,7 +188,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 4 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -458,7 +458,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -512,7 +512,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -566,7 +566,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -674,7 +674,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -728,7 +728,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -782,7 +782,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -1106,7 +1106,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -1160,7 +1160,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -1434,7 +1434,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -1650,7 +1650,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -3490,7 +3490,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -3924,7 +3924,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4086,7 +4086,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 0 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4247,7 +4247,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 0 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4951,7 +4951,7 @@ start from zero for a clearer view of the patch.;
 #X msg 38 178 1;
 #X obj 38 156 r open-signal-flow!;
 #X msg 38 203 \; pd-signal-flow vis \$1;
-#N canvas 416 23 852 668 signal-flow 0;
+#N canvas 416 23 1916 1001 signal-flow 0;
 #X obj 22 10 cnv 15 365 30 empty empty SIGNAL-FLOW 20 12 0 14 #dc4c90
 #fcfcfc 0;
 #X obj 26 161 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 #9898dc
@@ -5006,7 +5006,7 @@ CV.;
 #X connect 16 0 17 0;
 #X restore 39 134 pd signal-flow;
 #X msg 36 288 1;
-#N canvas 138 156 591 276 color-code 0;
+#N canvas 138 156 1916 1001 color-code 0;
 #X obj 140 39 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 #9898dc
 #fcfcfc #000000 0 1;
 #X obj 140 100 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 #90d4b0
@@ -5024,7 +5024,7 @@ signal or short impulse(square-wave) to function properly.;
 #X obj 36 266 r open-color-code!;
 #X msg 36 313 \; pd-color-code vis \$1;
 #X msg 37 404 1;
-#N canvas 7 24 377 372 manual 0;
+#N canvas 7 24 1916 1001 manual 0;
 #X obj 28 82 bng 30 250 50 0 open-signal-flow! empty empty 10 7 0 10
 #9898dc #000000 #fcfcfc;
 #X obj 49 82 bng 30 250 50 0 open-signal-flow! empty empty 17 7 0 10
@@ -5407,7 +5407,7 @@ buttons);
 #X msg 203 294 1;
 #X msg 202 416 1;
 #X obj 202 394 r open-folder-hierarchy!;
-#N canvas 0 23 420 254 folder-hierarchy 0;
+#N canvas 0 23 1916 1001 folder-hierarchy 0;
 #X obj 17 12 cnv 15 400 60 empty empty FOLDER-HIEARCHY 20 12 0 14 #dc4c90
 #fcfcfc 0;
 #X text 20 84 Inside your project folder you'll find a file called
@@ -5516,7 +5516,7 @@ as well.;
 #X restore 383 384 pd feedback-loops;
 #X msg 381 460 \; pd-feedback-loops vis \$1;
 #X msg 380 543 1;
-#N canvas 0 23 439 625 license 0;
+#N canvas 0 23 1916 1001 license 0;
 #X obj 17 12 cnv 15 400 60 empty empty LICENSE 20 12 0 14 #e0e0e0 #404040
 0;
 #X text 23 83 Copyright ©  2017 \, Johan Eriksson Automatonism is
@@ -5530,7 +5530,7 @@ for more details.;
 #X restore 382 498 pd license;
 #X obj 380 521 r open-license!;
 #X msg 380 574 \; pd-license vis \$1;
-#N canvas 293 23 419 217 reset-warning 0;
+#N canvas 293 23 1916 1001 reset-warning 0;
 #X obj 21 143 bng 15 250 50 0 \$0-reset! empty <--RESET! 17 7 0 10
 #fcfcfc #000000 #000000;
 #X text 18 49 WARNING!;
@@ -5546,7 +5546,7 @@ to start over at zero. PRESS THE BUTTON BELOW TO RESET:;
 #X msg 601 193 \; pd-reset-warning vis 0;
 #X obj 601 139 delay 500;
 #X msg 604 289 1;
-#N canvas 472 160 457 575 external-msg 0;
+#N canvas 472 160 1916 1001 external-msg 0;
 #X obj 17 12 cnv 15 400 60 empty empty EXTERNAL_MESSAGES 20 12 0 14
 #dc4c90 #fcfcfc 0;
 #X text 27 86 You can send external control messages into Automatonism
@@ -6332,7 +6332,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 0 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6386,7 +6386,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6494,7 +6494,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 0 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6604,7 +6604,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6672,4 +6672,4 @@ and send to the name of the module \, for example [s basic-osc];
 #X floatatom 8 146 5 0 0 1 CPU% CPU - 0;
 #X obj 8 105 bng 15 250 50 0 open-reset-warning! empty <--RESET! 17
 7 0 10 #fcfcfc #000000 #000000;
-#X obj 671 389 achordion 2;
+#X obj 892 246 achordion 1;
