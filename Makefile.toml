@@ -1,0 +1,19 @@
+[tasks.dev]
+dependencies = ["format", "format-toml", "clippy", "build"]
+
+[tasks.ci]
+dependencies = [
+  "print-env-flow",
+  "check-format",
+  "check-toml",
+  "clippy",
+  "build",
+]
+
+[tasks.check-toml]
+condition = { env_set = ["CARGO_MAKE_FORMAT_TOML_FILES"] }
+install_crate = { crate_name = "taplo-cli", binary = "taplo", test_arg = [
+  "--help",
+] }
+command = "taplo"
+args = ["format", "${CARGO_MAKE_FORMAT_TOML_FILES}", "--check"]

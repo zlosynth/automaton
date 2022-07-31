@@ -1,3 +1,3 @@
 pub fn foo() {
-    println!("Hello, world!");
+    println!("Hello, world!  ")
 }
