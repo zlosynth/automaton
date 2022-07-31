@@ -65,7 +65,7 @@
 #X connect 21 0 0 0;
 #X connect 22 0 9 0;
 #X restore 25 112 pd open-karplus;
-#N canvas 322 46 483 603 open-kick 0;
+#N canvas 322 46 1916 1001 open-kick 0;
 #X msg 64 84 bang;
 #X obj 64 151 t b b b;
 #X obj 162 168 f;
@@ -80,7 +80,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -188,7 +188,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 6 256;
+#fcfcfc #000000 #000000 7 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2786,7 +2786,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2948,7 +2948,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -3654,7 +3654,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -3708,7 +3708,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4140,7 +4140,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 5 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4301,7 +4301,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4627,7 +4627,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 4 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6604,7 +6604,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6673,11 +6673,15 @@ and send to the name of the module \, for example [s basic-osc];
 #X floatatom 8 146 5 0 0 1 CPU% CPU - 0;
 #X obj 8 105 bng 15 250 50 0 open-reset-warning! empty <--RESET! 17
 7 0 10 #fcfcfc #000000 #000000;
-#X obj 508 158 achordion 1;
-#X obj 503 596 maestro4 2;
-#X obj 722 618;
-#X obj 1021 318 8steps 2;
-#X obj 1101 88 clock;
+#X obj 748 304 achordion 2;
+#X obj 769 602 maestro4;
+#X obj 982 44 8steps 3;
+#X obj 1282 33 clock;
+#X obj 1274 175 clock-divider-even 3;
+#X obj 1259 310 8steps 4;
 #X connect 11 0 12 0;
-#X connect 14 0 11 0;
-#X connect 15 0 14 0;
+#X connect 13 0 11 0;
+#X connect 14 0 13 0;
+#X connect 14 0 15 0;
+#X connect 15 2 16 0;
+#X connect 16 0 11 6;
