@@ -13,5 +13,9 @@ crate-type = ["cdylib"]
 [dependencies]
 pd-sys = "0.1.0"
 field-offset = "0.3"
-achordion-lib = { path = "../achordion/lib" }
-achordion-bank = { path = "../achordion/bank", features = ["fft"] }
+# achordion-lib = { path = "../achordion/lib" }
+achordion-lib = { git = "https://github.com/zlosynth/achordion", version = "2.2.1" }
+# achordion-bank = { path = "../achordion/bank", features = ["fft"] }
+achordion-bank = { git = "https://github.com/zlosynth/achordion", version = "2.2.1", features = [
+  "fft",
+] }

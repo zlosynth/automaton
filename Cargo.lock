@@ -5,6 +5,7 @@ version = 3
 [[package]]
 name = "achordion-bank"
 version = "2.2.1"
+source = "git+https://github.com/zlosynth/achordion#731fdaed885bec2b706c46ff1ae889c7644f43fb"
 dependencies = [
  "microfft",
  "micromath",
@@ -14,6 +15,7 @@ dependencies = [
 [[package]]
 name = "achordion-lib"
 version = "2.2.1"
+source = "git+https://github.com/zlosynth/achordion#731fdaed885bec2b706c46ff1ae889c7644f43fb"
 dependencies = [
  "crc",
  "field-offset",
