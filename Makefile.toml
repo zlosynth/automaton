@@ -20,3 +20,17 @@ args = ["format", "${CARGO_MAKE_FORMAT_TOML_FILES}", "--check"]
 
 [tasks.clippy]
 env = { CARGO_MAKE_CLIPPY_ARGS = "-- -D warnings" }
+
+[tesks.build-release]
+env = { "CARGO_MAKE_CARGO_BUILD_TEST_FLAGS" = "--release" }
+run_task = "build"
+
+[tasks.build-external]
+dependencies = ["build-release"]
+command = "cp"
+args = ["./target/release/libautomaton.so", "./puredata/automaton.pd_linux"]
+
+[tasks.run]
+dependencies = [ "build-external" ]
+command = "pd"
+args = ["puredata/main.pd"]

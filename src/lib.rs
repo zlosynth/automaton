@@ -21,14 +21,14 @@ struct Automaton {
     _pd_obj: pd_sys::t_object,
 }
 
-unsafe extern "C" fn automation_new() -> *mut c_void {
+unsafe extern "C" fn automaton_new() -> *mut c_void {
     let counter = pd_sys::pd_new(AUTOMATON_CLASS.unwrap()) as *mut Automaton;
 
     counter as *mut c_void
 }
 
 #[no_mangle]
-pub unsafe extern "C" fn automation_setup() {
+pub unsafe extern "C" fn automaton_setup() {
     log::info("[automaton] initializing");
 
     let class = create_class();
@@ -41,7 +41,7 @@ pub unsafe extern "C" fn automation_setup() {
 unsafe fn create_class() -> *mut pd_sys::_class {
     pd_sys::class_new(
         pd_sys::gensym(cstr::cstr("automaton").as_ptr()),
-        Some(automation_new),
+        Some(automaton_new),
         None,
         std::mem::size_of::<Automaton>(),
         pd_sys::CLASS_NOINLET as i32,

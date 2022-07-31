@@ -3,12 +3,6 @@
 Fork of [Automatonism](https://www.automatonism.com/) 3.0 extended with Zlosynth
 modules.
 
-# Usage
-
-``` sh
-pd main.pd
-```
-
 # Development
 
 See [DEVELOPMENT.md](DEVELOPMENT.md) to find some basic commands to interact
