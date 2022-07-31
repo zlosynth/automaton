@@ -5519,14 +5519,15 @@ as well.;
 #N canvas 0 23 1916 1001 license 0;
 #X obj 17 12 cnv 15 400 60 empty empty LICENSE 20 12 0 14 #e0e0e0 #404040
 0;
-#X text 23 83 Copyright ©  2017 \, Johan Eriksson Automatonism is
-free software: you can redistribute it and/or modify it under the terms
+#X text 23 83 Copyright ©  2022 \, Petr Horacek Automaton is free
+software: you can redistribute it and/or modify it under the terms
 of the GNU General Public License as published by the Free Software
 Foundation \, either version 3 of the License \, or any later version.
 This program is distributed in the hope that it will be useful \, but
 WITHOUT ANY WARRANTY \; without even the implied warranty of MERCHANTABILITY
 or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
-for more details.;
+for more details. This project is based on the great Automatonism \,
+all kudos to Johan Eriksson.;
 #X restore 382 498 pd license;
 #X obj 380 521 r open-license!;
 #X msg 380 574 \; pd-license vis \$1;
