@@ -1,5 +1,9 @@
 # Automaton
 
+<p align="center">
+   <img src="screenshot.png" alt="Patch example"/>
+</p>
+
 Fork of [Automatonism](https://www.automatonism.com/) 3.0 extended with Zlosynth
 modules.
 
