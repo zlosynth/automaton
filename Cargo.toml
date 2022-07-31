@@ -1,8 +1,11 @@
 [package]
 name = "automation"
 version = "0.1.0"
+authors = ["Petr Horáček <hrck@protonmail.com>"]
 edition = "2021"
+license = "GPL-3.0-or-later"
+readme = "README.md"
+publish = false
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+[lib]
+crate-type = ["cdylib"]

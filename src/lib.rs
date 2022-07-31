@@ -1,3 +1,3 @@
-fn main() {
+pub fn foo() {
     println!("Hello, world!");
 }
