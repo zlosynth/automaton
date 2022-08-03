@@ -15,6 +15,7 @@ mod log;
 use std::os::raw::c_void;
 
 use instruments::achordion;
+use instruments::kaseta;
 
 static mut AUTOMATON_CLASS: Option<*mut pd_sys::_class> = None;
 
@@ -38,6 +39,7 @@ pub unsafe extern "C" fn automaton_setup() {
     AUTOMATON_CLASS = Some(class);
 
     achordion::achordion_tilde_setup();
+    kaseta::kaseta_tilde_setup();
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {

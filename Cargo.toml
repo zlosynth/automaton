@@ -19,3 +19,4 @@ achordion-lib = { git = "https://github.com/zlosynth/achordion", version = "2.2.
 achordion-bank = { git = "https://github.com/zlosynth/achordion", version = "2.2.1", features = [
   "fft",
 ] }
+kaseta-dsp = { path = "../kaseta/dsp" }
