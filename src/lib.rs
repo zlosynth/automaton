@@ -7,12 +7,14 @@ extern crate field_offset;
 #[macro_use]
 mod wrapper;
 
-pub mod achordion;
+pub mod instruments;
 
 mod cstr;
 mod log;
 
 use std::os::raw::c_void;
+
+use instruments::achordion;
 
 static mut AUTOMATON_CLASS: Option<*mut pd_sys::_class> = None;
 
