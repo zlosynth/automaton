@@ -5231,7 +5231,7 @@ more elaborate pd-code for deeper control.;
 8 0 12 #9898dc #fcfcfc 0;
 #X obj 568 91 cnv 15 180 15 empty empty UTILITY&LOGIC: 10 8 0 12 #9898dc
 #fcfcfc 0;
-#X obj 10 522 cnv 15 180 15 empty empty SEQUENCERS: 10 8 0 12 #9898dc
+#X obj 10 519 cnv 15 180 15 empty empty SEQUENCERS: 10 8 0 12 #9898dc
 #fcfcfc 0;
 #X obj 196 271 bng 15 250 50 0 \$0-create-s&h! empty <--S&H(sample&hold)
 17 7 0 10 #fcfcfc #000000 #000000;
@@ -5269,9 +5269,9 @@ more elaborate pd-code for deeper control.;
 17 7 0 10 #90d4b0 #000000 #000000;
 #X obj 569 111 bng 15 250 50 0 \$0-create-clock! empty <--CLOCK 17
 7 0 10 #fcfcfc #000000 #000000;
-#X obj 10 542 bng 15 250 50 0 \$0-create-8steps! empty <--8STEPS 17
+#X obj 10 539 bng 15 250 50 0 \$0-create-8steps! empty <--8STEPS 17
 7 0 10 #fcfcfc #000000 #000000;
-#X obj 10 562 bng 15 250 50 0 \$0-create-mega-sequencer! empty <--MEGA-SEQUENCER!
+#X obj 10 559 bng 15 250 50 0 \$0-create-mega-sequencer! empty <--MEGA-SEQUENCER!
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 569 350 bng 15 250 50 0 \$0-create-4to1-switch! empty <--4TO1-SWITCH
 17 7 0 10 #fcfcfc #000000 #000000;
@@ -5301,7 +5301,7 @@ more elaborate pd-code for deeper control.;
 17 7 0 10 #9898dc #000000 #000000;
 #X obj 196 152 bng 15 250 50 0 \$0-create-ahr! empty <--ATTACK-HOLD-RELEASE(ahr)
 17 7 0 10 #fcfcfc #000000 #000000;
-#X obj 10 582 bng 15 250 50 0 \$0-create-trigger-seq! empty <--TRIGGER-SEQ
+#X obj 10 579 bng 15 250 50 0 \$0-create-trigger-seq! empty <--TRIGGER-SEQ
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 569 371 bng 15 250 50 0 \$0-create-1to4-switch! empty <--1TO4-SWITCH
 17 7 0 10 #fcfcfc #000000 #000000;
@@ -5363,11 +5363,11 @@ more elaborate pd-code for deeper control.;
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 383 485 bng 15 250 50 0 \$0-create-compressor! empty <--COMPRESSOR
 17 7 0 10 #9898dc #000000 #000000;
-#X obj 10 619 bng 15 250 50 0 \$0-create-ratchet-seq! empty <--RATCHET-SEQ
+#X obj 10 616 bng 15 250 50 0 \$0-create-ratchet-seq! empty <--RATCHET-SEQ
 17 7 0 10 #9898dc #000000 #000000;
 #X obj 10 436 bng 15 250 50 0 \$0-create-sampler! empty <--SAMPLER
 17 7 0 10 #90d4b0 #000000 #000000;
-#X obj 10 601 bng 15 250 50 0 \$0-create-gate-seq! empty <--GATE-SEQ
+#X obj 10 598 bng 15 250 50 0 \$0-create-gate-seq! empty <--GATE-SEQ
 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 10 456 bng 15 250 50 0 \$0-create-chord-synth! empty <--CHORD-SYNTH
 17 7 0 10 #9898dc #000000 #000000;
@@ -5402,6 +5402,8 @@ buttons);
 #X text 435 738 (New modules for Zlosynth have PINK buttons);
 #X obj 10 496 bng 15 250 50 0 \$0-create-achordion! empty <--ACHORDION
 17 7 0 10 #ff98dc #000000 #000000;
+#X obj 383 603 bng 15 250 50 0 \$0-create-kaseta! empty <--KASETA 17
+7 0 10 #ff98dc #000000 #000000;
 #X restore 204 249 pd modules;
 #X msg 203 324 \; pd-modules vis \$1;
 #X msg 203 294 1;
@@ -6644,7 +6646,61 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 21 0 0 0;
 #X connect 22 0 9 0;
 #X restore 28 17 pd open-achordion;
-#X obj 29 45 automaton;
+#X obj 28 63 automaton;
+#N canvas 322 46 1916 1001 open-kaseta 0;
+#X msg 64 84 bang;
+#X obj 64 151 t b b b;
+#X obj 162 168 f;
+#X obj 191 168 + 1;
+#X obj 162 257 + 1;
+#X obj 223 101 delay 250;
+#X msg 223 211 \; pd-modules vis 0;
+#X obj 223 123 t b b;
+#X msg 250 171 \; pd-main.pd editmode 1;
+#X obj 83 316 pack s f;
+#X obj 177 38 r \$0-reset!;
+#X msg 177 60 0;
+#X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
+#X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 4 256;
+#X obj 64 387 t b b;
+#X msg 64 509 loadbang;
+#X obj 91 411 s SAVE-S;
+#X obj 64 462 delay 100;
+#X obj 308 316 f;
+#X obj 308 278 loadbang;
+#X obj 162 299 t f f;
+#X obj 64 17 r \$0-create-kaseta!;
+#X msg 83 235 kaseta;
+#X obj 65 562 s pd-kaseta.pd;
+#X connect 0 0 1 0;
+#X connect 0 0 5 0;
+#X connect 1 0 14 0;
+#X connect 1 1 22 0;
+#X connect 1 2 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 1;
+#X connect 4 0 13 0;
+#X connect 5 0 7 0;
+#X connect 7 0 6 0;
+#X connect 7 1 8 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 11 0 2 1;
+#X connect 11 0 13 0;
+#X connect 13 0 20 0;
+#X connect 14 0 17 0;
+#X connect 14 1 16 0;
+#X connect 15 0 23 0;
+#X connect 17 0 15 0;
+#X connect 18 0 2 1;
+#X connect 19 0 18 0;
+#X connect 20 0 9 1;
+#X connect 20 1 18 1;
+#X connect 21 0 0 0;
+#X connect 22 0 9 0;
+#X restore 28 40 pd open-kaseta;
 #X restore 21 428 pd zlosynth;
 #X connect 1 0 3 0;
 #X connect 2 0 0 0;
@@ -6691,6 +6747,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X obj 1136 113 scope;
 #X obj 974 163 *~ 3;
 #X obj 871 253 *~ 7;
+#X obj 117 272 kaseta 4;
 #X connect 11 0 12 0;
 #X connect 11 0 24 0;
 #X connect 13 0 11 0;
