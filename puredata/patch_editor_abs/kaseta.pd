@@ -1,4 +1,4 @@
-#N canvas 169 23 1916 1001 10;
+#N canvas 169 23 956 1001 10;
 #X obj 105 270 cnv 5 5 5 empty empty OUT 0 0 0 8 #fcfcfc #404040 0
 ;
 #N canvas 315 35 1916 1001 state-saving-multiple-instances 0;
@@ -853,20 +853,20 @@
 0;
 #X obj 107 128 cnv 5 5 5 empty empty KASETA 0 0 0 12 #fcfcfc #404040
 0;
-#X obj 154 128 cnv 5 5 5 empty \$0-instance-num 4 0 0 0 12 #fcfcfc
+#X obj 154 128 cnv 5 5 5 empty \$0-instance-num 1 0 0 0 12 #fcfcfc
 #404040 0;
-#X obj 110 145 hsl 128 15 0 127 0 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
-PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 2200 1;
-#X obj 110 160 hsl 128 15 1.27 127 1 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
-DRIVE 133 7 0 10 #fcfcfc #000000 #000000 7700 1;
+#X obj 110 145 hsl 128 15 1.27 127 1 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
+PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 6100 1;
+#X obj 110 160 hsl 128 15 0.2 127 1 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
+DRIVE 133 7 0 10 #fcfcfc #000000 #000000 10050 1;
 #X obj 110 175 hsl 128 15 0 127 0 1 \$0-kaseta-drive-att-s \$0-kaseta-drive-att-r
 ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 110 190 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-s \$0-kaseta-saturation-r
-SATURATION 133 7 0 10 #fcfcfc #000000 #000000 0 1;
+SATURATION 133 7 0 10 #fcfcfc #000000 #000000 4700 1;
 #X obj 110 205 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-att-s \$0-kaseta-saturation-att-r
 ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 110 220 hsl 128 15 0 127 0 1 \$0-kaseta-bias-s \$0-kaseta-bias-r
-BIAS 133 7 0 10 #fcfcfc #000000 #000000 0 1;
+BIAS 133 7 0 10 #fcfcfc #000000 #000000 10100 1;
 #X obj 110 235 hsl 128 15 0 127 0 1 \$0-kaseta-bias-att-s \$0-kaseta-bias-att-r
 ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 387 260 r~ \$0-kaseta-out;
@@ -921,7 +921,9 @@ ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X msg 200 550 width \$1;
 #X obj 151 366 * 20;
 #X obj 136 398 *~;
-#X obj 171 424 * 10;
+#X floatatom 289 163 4 0 0 0 - - - 0;
+#X obj 171 424 * 30;
+#X floatatom 289 143 4 0 0 0 - - - 0;
 #X connect 1 0 3 0;
 #X connect 3 0 4 0;
 #X connect 4 0 2 0;
@@ -934,7 +936,7 @@ ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X connect 30 0 29 0;
 #X connect 31 0 30 0;
 #X connect 32 0 30 0;
-#X connect 33 0 79 0;
+#X connect 33 0 80 0;
 #X connect 34 0 32 0;
 #X connect 35 0 76 0;
 #X connect 36 0 75 0;
@@ -974,6 +976,8 @@ ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X connect 73 0 70 0;
 #X connect 76 0 30 0;
 #X connect 77 0 78 1;
+#X connect 77 0 81 0;
 #X connect 78 0 30 0;
-#X connect 79 0 31 0;
+#X connect 80 0 31 0;
+#X connect 80 0 79 0;
 #X coords 0 -1 1 1 220 180 2 100 100;
