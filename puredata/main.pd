@@ -6739,3 +6739,4 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 12 0 15 0;
 #X connect 13 0 12 0;
 #X connect 13 0 11 2;
+#X connect 14 0 12 0;

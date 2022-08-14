@@ -1,6 +1,7 @@
 use std::os::raw::{c_int, c_void};
 
-use kaseta_dsp::processor::{Processor, Attributes};
+use kaseta_control::{self as control, Cache, ControlAction};
+use kaseta_dsp::processor::Processor;
 
 use crate::{cstr, log};
 
@@ -11,8 +12,8 @@ struct Class {
     pd_obj: pd_sys::t_object,
     solo_outlet: *mut pd_sys::_outlet,
     chord_outlet: *mut pd_sys::_outlet,
+    cache: Cache,
     processor: Processor,
-    attributes: Attributes,
     signal_dummy: f32,
 }
 
@@ -31,9 +32,12 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         callback = perform
     );
 
-    register_float_method(class, "drive", set_drive);
-    register_float_method(class, "saturation", set_saturation);
-    register_float_method(class, "width", set_width);
+    register_float_method(class, "drive_pot", set_drive_pot);
+    register_float_method(class, "drive_cv", set_drive_cv);
+    register_float_method(class, "saturation_pot", set_saturation_pot);
+    register_float_method(class, "saturation_cv", set_saturation_cv);
+    register_float_method(class, "bias_pot", set_bias_pot);
+    register_float_method(class, "bias_cv", set_bias_cv);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -56,11 +60,12 @@ unsafe extern "C" fn new() -> *mut c_void {
     let class = pd_sys::pd_new(CLASS.unwrap()) as *mut Class;
 
     let sample_rate = pd_sys::sys_getsr();
-    let attributes = Attributes::default();
+    let cache = Cache::default();
+    let attributes = control::cook_dsp_reaction_from_cache(&cache).into();
     let processor = Processor::new(sample_rate, attributes);
 
+    (*class).cache = cache;
     (*class).processor = processor;
-    (*class).attributes = attributes;
 
     pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
 
@@ -84,25 +89,33 @@ unsafe fn register_float_method(
     );
 }
 
-unsafe extern "C" fn set_drive(class: *mut Class, drive: f32) {
-    (*class).attributes.drive = drive;
-    reconcile_attributes(class);
+unsafe extern "C" fn set_drive_pot(class: *mut Class, drive: f32) {
+    apply_control_action(class, ControlAction::SetDrivePot(drive));
 }
 
-unsafe extern "C" fn set_saturation(class: *mut Class, saturation: f32) {
-    (*class).attributes.saturation = saturation;
-    reconcile_attributes(class);
+unsafe extern "C" fn set_drive_cv(class: *mut Class, drive: f32) {
+    apply_control_action(class, ControlAction::SetDriveCV(drive));
 }
 
-unsafe extern "C" fn set_width(class: *mut Class, width: f32) {
-    (*class).attributes.width = width;
-    reconcile_attributes(class);
+unsafe extern "C" fn set_saturation_pot(class: *mut Class, saturation: f32) {
+    apply_control_action(class, ControlAction::SetSaturationPot(saturation));
 }
 
-unsafe extern "C" fn reconcile_attributes(class: *mut Class) {
-    (*class).processor.set_attributes(
-        (*class).attributes
-    )
+unsafe extern "C" fn set_saturation_cv(class: *mut Class, saturation: f32) {
+    apply_control_action(class, ControlAction::SetSaturationCV(saturation));
+}
+
+unsafe extern "C" fn set_bias_pot(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetBiasPot(bias));
+}
+
+unsafe extern "C" fn set_bias_cv(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetBiasCV(bias));
+}
+
+unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
+    let dsp_reaction = control::reduce_control_action(action, &mut (*class).cache);
+    (*class).processor.set_attributes(dsp_reaction.into());
 }
 
 fn perform(

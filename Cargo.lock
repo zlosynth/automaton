@@ -54,6 +54,7 @@ dependencies = [
  "achordion-bank",
  "achordion-lib",
  "field-offset",
+ "kaseta-control",
  "kaseta-dsp",
  "pd-sys",
 ]
@@ -176,6 +177,14 @@ dependencies = [
  "rustc_version 0.4.0",
  "spin 0.9.4",
  "stable_deref_trait",
+]
+
+[[package]]
+name = "kaseta-control"
+version = "0.1.0"
+dependencies = [
+ "kaseta-dsp",
+ "libm",
 ]
 
 [[package]]
@@ -438,7 +447,7 @@ dependencies = [
 
 [[package]]
 name = "sirena"
-version = "0.0.1"
+version = "0.1.0"
 dependencies = [
  "heapless",
  "libm",
