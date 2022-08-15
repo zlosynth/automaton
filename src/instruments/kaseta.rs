@@ -32,6 +32,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         callback = perform
     );
 
+    register_float_method(class, "pre_amp_pot", set_pre_amp_pot);
     register_float_method(class, "drive_pot", set_drive_pot);
     register_float_method(class, "drive_cv", set_drive_cv);
     register_float_method(class, "saturation_pot", set_saturation_pot);
@@ -87,6 +88,10 @@ unsafe fn register_float_method(
         pd_sys::t_atomtype::A_FLOAT,
         0,
     );
+}
+
+unsafe extern "C" fn set_pre_amp_pot(class: *mut Class, pre_amp: f32) {
+    apply_control_action(class, ControlAction::SetPreAmpPot(pre_amp));
 }
 
 unsafe extern "C" fn set_drive_pot(class: *mut Class, drive: f32) {

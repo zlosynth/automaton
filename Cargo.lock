@@ -185,6 +185,7 @@ version = "0.1.0"
 dependencies = [
  "kaseta-dsp",
  "libm",
+ "micromath",
 ]
 
 [[package]]
