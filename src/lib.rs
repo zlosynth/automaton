@@ -5,6 +5,9 @@
 extern crate field_offset;
 
 #[macro_use]
+extern crate lazy_static;
+
+#[macro_use]
 mod wrapper;
 
 pub mod instruments;

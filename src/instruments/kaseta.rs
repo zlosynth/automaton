@@ -1,11 +1,22 @@
 use std::os::raw::{c_int, c_void};
+use core::mem::MaybeUninit;
+use std::sync::Mutex;
 
 use kaseta_control::{self as control, Cache, ControlAction};
 use kaseta_dsp::processor::Processor;
+use kaseta_dsp::memory_manager::MemoryManager;
 
 use crate::{cstr, log};
 
 static mut CLASS: Option<*mut pd_sys::_class> = None;
+lazy_static! {
+    static ref MEMORY_MANAGER: Mutex<MemoryManager> = {
+        static mut MEMORY: [MaybeUninit<u32>; 48000] =
+            unsafe { MaybeUninit::uninit().assume_init() };
+        let memory_manager = MemoryManager::from(unsafe { &mut MEMORY[..] });
+        Mutex::new(memory_manager)
+    };
+}
 
 #[repr(C)]
 struct Class {
@@ -63,7 +74,7 @@ unsafe extern "C" fn new() -> *mut c_void {
     let sample_rate = pd_sys::sys_getsr();
     let cache = Cache::default();
     let attributes = control::cook_dsp_reaction_from_cache(&cache).into();
-    let processor = Processor::new(sample_rate, attributes);
+    let processor = Processor::new(sample_rate, attributes, &mut *MEMORY_MANAGER.lock().unwrap());
 
     (*class).cache = cache;
     (*class).processor = processor;

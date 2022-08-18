@@ -11,6 +11,7 @@ publish = false
 crate-type = ["cdylib"]
 
 [dependencies]
+lazy_static = "1.4"
 pd-sys = "0.1.0"
 field-offset = "0.3"
 # achordion-lib = { path = "../achordion/lib" }
