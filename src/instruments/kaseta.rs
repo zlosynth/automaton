@@ -71,10 +71,14 @@ unsafe fn create_class() -> *mut pd_sys::_class {
 unsafe extern "C" fn new() -> *mut c_void {
     let class = pd_sys::pd_new(CLASS.unwrap()) as *mut Class;
 
-    let sample_rate = pd_sys::sys_getsr();
     let cache = Cache::default();
-    let attributes = control::cook_dsp_reaction_from_cache(&cache).into();
-    let processor = Processor::new(sample_rate, attributes, &mut *MEMORY_MANAGER.lock().unwrap());
+    let processor = {
+        let sample_rate = pd_sys::sys_getsr();
+        let mut processor = Processor::new(sample_rate, &mut *MEMORY_MANAGER.lock().unwrap());
+        let attributes = control::cook_dsp_reaction_from_cache(&cache).into();
+        processor.set_attributes(attributes);
+        processor
+    };
 
     (*class).cache = cache;
     (*class).processor = processor;
