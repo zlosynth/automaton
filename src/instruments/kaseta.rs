@@ -50,6 +50,10 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "saturation_cv", set_saturation_cv);
     register_float_method(class, "bias_pot", set_bias_pot);
     register_float_method(class, "bias_cv", set_bias_cv);
+    register_float_method(class, "wow_frequency_pot", set_wow_frequency_pot);
+    register_float_method(class, "wow_frequency_cv", set_wow_frequency_cv);
+    register_float_method(class, "wow_depth_pot", set_wow_depth_pot);
+    register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -131,6 +135,22 @@ unsafe extern "C" fn set_bias_pot(class: *mut Class, bias: f32) {
 
 unsafe extern "C" fn set_bias_cv(class: *mut Class, bias: f32) {
     apply_control_action(class, ControlAction::SetBiasCV(bias));
+}
+
+unsafe extern "C" fn set_wow_frequency_pot(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetWowFrequencyPot(bias));
+}
+
+unsafe extern "C" fn set_wow_frequency_cv(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetWowFrequencyCV(bias));
+}
+
+unsafe extern "C" fn set_wow_depth_pot(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetWowDepthPot(bias));
+}
+
+unsafe extern "C" fn set_wow_depth_cv(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetWowDepthCV(bias));
 }
 
 unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
