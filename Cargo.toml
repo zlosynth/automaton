@@ -22,3 +22,4 @@ achordion-bank = { git = "https://github.com/zlosynth/achordion", version = "2.2
 ] }
 kaseta-dsp = { path = "../kaseta/dsp" }
 kaseta-control = { path = "../kaseta/control" }
+sirena = { path = "../sirena" }

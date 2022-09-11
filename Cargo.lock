@@ -58,6 +58,7 @@ dependencies = [
  "kaseta-dsp",
  "lazy_static",
  "pd-sys",
+ "sirena",
 ]
 
 [[package]]
