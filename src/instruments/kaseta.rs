@@ -11,7 +11,7 @@ use crate::{cstr, log};
 static mut CLASS: Option<*mut pd_sys::_class> = None;
 lazy_static! {
     static ref MEMORY_MANAGER: Mutex<MemoryManager> = {
-        static mut MEMORY: [MaybeUninit<u32>; 48000 * 10] =
+        static mut MEMORY: [MaybeUninit<u32>; 48000 * 4 * 20] =
             unsafe { MaybeUninit::uninit().assume_init() };
         let memory_manager = MemoryManager::from(unsafe { &mut MEMORY[..] });
         Mutex::new(memory_manager)
@@ -54,6 +54,16 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "wow_frequency_cv", set_wow_frequency_cv);
     register_float_method(class, "wow_depth_pot", set_wow_depth_pot);
     register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
+    register_float_method(class, "delay_length_pot", set_delay_length_pot);
+    register_float_method(class, "delay_length_cv", set_delay_length_cv);
+    register_float_method(class, "delay_head_1_position_pot", set_delay_head_1_position_pot);
+    register_float_method(class, "delay_head_1_position_cv", set_delay_head_1_position_cv);
+    register_float_method(class, "delay_head_2_position_pot", set_delay_head_2_position_pot);
+    register_float_method(class, "delay_head_2_position_cv", set_delay_head_2_position_cv);
+    register_float_method(class, "delay_head_3_position_pot", set_delay_head_3_position_pot);
+    register_float_method(class, "delay_head_3_position_cv", set_delay_head_3_position_cv);
+    register_float_method(class, "delay_head_4_position_pot", set_delay_head_4_position_pot);
+    register_float_method(class, "delay_head_4_position_cv", set_delay_head_4_position_cv);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -151,6 +161,46 @@ unsafe extern "C" fn set_wow_depth_pot(class: *mut Class, bias: f32) {
 
 unsafe extern "C" fn set_wow_depth_cv(class: *mut Class, bias: f32) {
     apply_control_action(class, ControlAction::SetWowDepthCV(bias));
+}
+
+unsafe extern "C" fn set_delay_length_cv(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetDelayLengthCV(bias));
+}
+
+unsafe extern "C" fn set_delay_length_pot(class: *mut Class, bias: f32) {
+    apply_control_action(class, ControlAction::SetDelayLengthPot(bias));
+}
+
+unsafe extern "C" fn set_delay_head_1_position_cv(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(0, position));
+}
+
+unsafe extern "C" fn set_delay_head_1_position_pot(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(0, position));
+}
+
+unsafe extern "C" fn set_delay_head_2_position_cv(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(1, position));
+}
+
+unsafe extern "C" fn set_delay_head_2_position_pot(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(1, position));
+}
+
+unsafe extern "C" fn set_delay_head_3_position_cv(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(2, position));
+}
+
+unsafe extern "C" fn set_delay_head_3_position_pot(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(2, position));
+}
+
+unsafe extern "C" fn set_delay_head_4_position_cv(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(3, position));
+}
+
+unsafe extern "C" fn set_delay_head_4_position_pot(class: *mut Class, position: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(3, position));
 }
 
 unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
