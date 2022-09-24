@@ -5178,7 +5178,7 @@ more elaborate pd-code for deeper control.;
 #X obj 204 151 r open-organelle-map!;
 #X msg 204 198 \; pd-organelle-map vis \$1;
 #X obj 203 272 r open-modules!;
-#N canvas 0 45 636 1001 modules 0;
+#N canvas 0 45 1916 1001 modules 0;
 #X obj 196 91 cnv 15 180 15 empty empty MODULATION: 10 8 0 12 #9898dc
 #fcfcfc 0;
 #X obj 196 112 bng 15 250 50 0 \$0-create-basic-lfo! empty <--BASIC-LFO
@@ -6733,10 +6733,10 @@ and send to the name of the module \, for example [s basic-osc];
 #X obj 281 605 maestro4 1;
 #X obj 282 338 kaseta 1;
 #X obj 281 172 external-audio 1;
-#X obj 711 354 achordion 2;
-#X obj 710 53 clock 2;
-#X obj 711 139 decay 2;
-#X obj 711 319 *~ 0.2;
+#X obj 934 406 achordion 2;
+#X obj 933 105 clock 2;
+#X obj 934 191 decay 2;
+#X obj 934 371 *~ 0.2;
 #X connect 12 0 11 0;
 #X connect 13 0 12 0;
 #X connect 14 0 12 0;

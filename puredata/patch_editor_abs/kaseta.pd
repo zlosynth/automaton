@@ -1,4 +1,4 @@
-#N canvas 0 45 956 1001 10;
+#N canvas 0 45 1916 1001 10;
 #X obj 105 330 cnv 5 5 5 empty empty OUT 0 0 0 8 #fcfcfc #404040 0
 ;
 #N canvas 315 35 1916 1001 state-saving-multiple-instances 0;
@@ -1753,19 +1753,19 @@ DELAY_HEAD_4_POSITION, f 157;
 #X obj 154 128 cnv 5 5 5 empty \$0-instance-num 1 0 0 0 12 #fcfcfc
 #404040 0;
 #X obj 110 145 hsl 128 15 1.27 127 1 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
-PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 5900 1;
+PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 9600 1;
 #X obj 110 160 hsl 128 15 0 127 0 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
-DRIVE 133 7 0 10 #fcfcfc #000000 #000000 6200 1;
+DRIVE 133 7 0 10 #fcfcfc #000000 #000000 8400 1;
 #X obj 110 175 hsl 128 15 0 127 0 1 \$0-kaseta-drive-att-s \$0-kaseta-drive-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 300 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 600 1;
 #X obj 110 190 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-s \$0-kaseta-saturation-r
-SATURATION 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+SATURATION 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X obj 110 205 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-att-s \$0-kaseta-saturation-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 200 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 400 1;
 #X obj 110 220 hsl 128 15 0 127 0 1 \$0-kaseta-bias-s \$0-kaseta-bias-r
-BIAS 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+BIAS 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X obj 110 235 hsl 128 15 0 127 0 1 \$0-kaseta-bias-att-s \$0-kaseta-bias-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 1500 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 3000 1;
 #X obj 94 626 r~ \$0-kaseta-out;
 #X obj 94 648 outlet~ OUT;
 #X obj 1497 930 s~ \$0-kaseta-out;
@@ -1836,9 +1836,9 @@ WOW\\\ FREQ 133 7 0 10 #fcfcfc #000000 #000000 0 1;
 \$0-kaseta-wow-frequency-att-r ATT 133 7 0 10 #9898dc #000000 #000000
 0 1;
 #X obj 110 280 hsl 128 15 0 127 0 1 \$0-kaseta-wow-depth-s \$0-kaseta-wow-depth-r
-WOW\\\ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+WOW\\\ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X obj 110 295 hsl 128 15 0 127 0 1 \$0-kaseta-bias-att-s \$0-kaseta-bias-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 1500 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 3000 1;
 #X obj 762 648 / 127;
 #X obj 762 625 r \$0-kaseta-wow-frequency-s;
 #X obj 762 670 s \$0-kaseta-wow-frequency-pot;
@@ -1866,19 +1866,19 @@ ATT 133 7 0 10 #9898dc #000000 #000000 1500 1;
 #X obj 283 109 cnv 5 5 5 empty empty WOW\\\ D. 0 0 0 8 #fcfcfc #7474a4
 0;
 #X obj 322 145 hsl 128 15 0 127 0 1 \$0-kaseta-delay-length-s \$0-kaseta-delay-length-r
-DELAY 133 7 0 10 #fcfcfc #000000 #000000 3600 1;
+DELAY 133 7 0 10 #fcfcfc #000000 #000000 14400 1;
 #X obj 322 160 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-1-position-s
-\$0-kaseta-delay-head-1-position-r H1\\\ POS 133 7 0 10 #fcfcfc #000000
-#000000 5600 1;
+\$0-kaseta-delay-head-1-position-r H1 133 7 0 10 #fcfcfc #000000 #000000
+22400 1;
 #X obj 322 175 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-position-s
-\$0-kaseta-delay-head-2-position-r H2\\\ POS 133 7 0 10 #fcfcfc #000000
-#000000 9500 1;
+\$0-kaseta-delay-head-2-position-r H2 133 7 0 10 #fcfcfc #000000 #000000
+25400 1;
 #X obj 322 190 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-3-position-s
-\$0-kaseta-delay-head-3-position-r H3\\\ POS 133 7 0 10 #fcfcfc #000000
-#000000 2500 1;
+\$0-kaseta-delay-head-3-position-r H3 133 7 0 10 #fcfcfc #000000 #000000
+10000 1;
 #X obj 322 205 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-4-position-s
-\$0-kaseta-delay-head-4-position-r H4\\\ POS 133 7 0 10 #fcfcfc #000000
-#000000 8800 1;
+\$0-kaseta-delay-head-4-position-r H4 133 7 0 10 #fcfcfc #000000 #000000
+25400 1;
 #X obj 762 787 / 127;
 #X obj 762 764 r \$0-kaseta-delay-length-s;
 #X obj 762 809 s \$0-kaseta-delay-length-pot;
@@ -1949,6 +1949,9 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 3600 1;
 #X msg 1655 841 delay_head_2_position_cv \$1;
 #X msg 1747 93 delay_head_3_position_cv \$1;
 #X msg 1768 191 delay_head_4_position_cv \$1;
+#X text 473 165 P;
+#X text 473 180 O;
+#X text 473 195 S;
 #X connect 1 0 3 0;
 #X connect 3 0 4 0;
 #X connect 4 0 2 0;
