@@ -1,5 +1,5 @@
-use std::os::raw::{c_int, c_void};
 use core::mem::MaybeUninit;
+use std::os::raw::{c_int, c_void};
 use std::sync::Mutex;
 
 use kaseta_control::{self as control, Cache, ControlAction};
@@ -56,14 +56,46 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
     register_float_method(class, "delay_length_pot", set_delay_length_pot);
     register_float_method(class, "delay_length_cv", set_delay_length_cv);
-    register_float_method(class, "delay_head_1_position_pot", set_delay_head_1_position_pot);
-    register_float_method(class, "delay_head_1_position_cv", set_delay_head_1_position_cv);
-    register_float_method(class, "delay_head_2_position_pot", set_delay_head_2_position_pot);
-    register_float_method(class, "delay_head_2_position_cv", set_delay_head_2_position_cv);
-    register_float_method(class, "delay_head_3_position_pot", set_delay_head_3_position_pot);
-    register_float_method(class, "delay_head_3_position_cv", set_delay_head_3_position_cv);
-    register_float_method(class, "delay_head_4_position_pot", set_delay_head_4_position_pot);
-    register_float_method(class, "delay_head_4_position_cv", set_delay_head_4_position_cv);
+    register_float_method(
+        class,
+        "delay_head_1_position_pot",
+        set_delay_head_1_position_pot,
+    );
+    register_float_method(
+        class,
+        "delay_head_1_position_cv",
+        set_delay_head_1_position_cv,
+    );
+    register_float_method(
+        class,
+        "delay_head_2_position_pot",
+        set_delay_head_2_position_pot,
+    );
+    register_float_method(
+        class,
+        "delay_head_2_position_cv",
+        set_delay_head_2_position_cv,
+    );
+    register_float_method(
+        class,
+        "delay_head_3_position_pot",
+        set_delay_head_3_position_pot,
+    );
+    register_float_method(
+        class,
+        "delay_head_3_position_cv",
+        set_delay_head_3_position_cv,
+    );
+    register_float_method(
+        class,
+        "delay_head_4_position_pot",
+        set_delay_head_4_position_pot,
+    );
+    register_float_method(
+        class,
+        "delay_head_4_position_cv",
+        set_delay_head_4_position_cv,
+    );
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -71,10 +103,7 @@ unsafe fn create_class() -> *mut pd_sys::_class {
 
     pd_sys::class_new(
         pd_sys::gensym(cstr::cstr("kaseta~").as_ptr()),
-        Some(std::mem::transmute::<
-            unsafe extern "C" fn() -> *mut c_void,
-            _,
-        >(new)),
+        Some(new),
         None,
         std::mem::size_of::<Class>(),
         pd_sys::CLASS_DEFAULT as i32,
