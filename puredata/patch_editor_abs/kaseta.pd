@@ -1857,19 +1857,19 @@ DELAY_HEAD_4_POSITION DELAY_QUANTIZATION, f 176;
 #X obj 154 128 cnv 5 5 5 empty \$0-instance-num 2 0 0 0 12 #fcfcfc
 #404040 0;
 #X obj 110 145 hsl 128 15 1.27 127 1 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
-PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 7800 1;
 #X obj 110 160 hsl 128 15 0 127 0 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
-DRIVE 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+DRIVE 133 7 0 10 #fcfcfc #000000 #000000 8200 1;
 #X obj 110 175 hsl 128 15 0 127 0 1 \$0-kaseta-drive-att-s \$0-kaseta-drive-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 12700 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 110 190 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-s \$0-kaseta-saturation-r
-SATURATION 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+SATURATION 133 7 0 10 #fcfcfc #000000 #000000 7400 1;
 #X obj 110 205 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-att-s \$0-kaseta-saturation-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 12700 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 110 220 hsl 128 15 0 127 0 1 \$0-kaseta-bias-s \$0-kaseta-bias-r
-BIAS 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+BIAS 133 7 0 10 #fcfcfc #000000 #000000 4800 1;
 #X obj 110 235 hsl 128 15 0 127 0 1 \$0-kaseta-bias-att-s \$0-kaseta-bias-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 12700 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 94 626 r~ \$0-kaseta-out;
 #X obj 94 648 outlet~ OUT;
 #X obj 1497 930 s~ \$0-kaseta-out;
@@ -1935,14 +1935,14 @@ ATT 133 7 0 10 #9898dc #000000 #000000 12700 1;
 #X obj 1601 526 r \$0-kaseta-wow-depth-cv;
 #X msg 1601 550 wow_depth_cv \$1;
 #X obj 110 250 hsl 128 15 0 127 0 1 \$0-kaseta-wow-frequency-s \$0-kaseta-wow-frequency-r
-WOW\\\ FREQ 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+WOW\\\ FREQ 133 7 0 10 #fcfcfc #000000 #000000 4400 1;
 #X obj 110 265 hsl 128 15 0 127 0 1 \$0-kaseta-wow-frequency-att-s
 \$0-kaseta-wow-frequency-att-r ATT 133 7 0 10 #9898dc #000000 #000000
-12700 1;
+0 1;
 #X obj 110 280 hsl 128 15 0 127 0 1 \$0-kaseta-wow-depth-s \$0-kaseta-wow-depth-r
-WOW\\\ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+WOW\\\ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 3600 1;
 #X obj 110 295 hsl 128 15 0 127 0 1 \$0-kaseta-wow-depth-att-s \$0-kaseta-wow-depth-att-r
-ATT 133 7 0 10 #9898dc #000000 #000000 12700 1;
+ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 762 648 / 127;
 #X obj 762 625 r \$0-kaseta-wow-frequency-s;
 #X obj 762 670 s \$0-kaseta-wow-frequency-pot;
@@ -1970,19 +1970,19 @@ ATT 133 7 0 10 #9898dc #000000 #000000 12700 1;
 #X obj 283 109 cnv 5 5 5 empty empty WOW\\\ D. 0 0 0 8 #fcfcfc #7474a4
 0;
 #X obj 322 145 hsl 128 15 0 127 0 1 \$0-kaseta-delay-length-s \$0-kaseta-delay-length-r
-DELAY 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+DELAY 133 7 0 10 #fcfcfc #000000 #000000 2800 1;
 #X obj 322 160 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-1-position-s
 \$0-kaseta-delay-head-1-position-r H1 133 7 0 10 #fcfcfc #000000 #000000
-12700 1;
+0 1;
 #X obj 322 175 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-position-s
 \$0-kaseta-delay-head-2-position-r H2 133 7 0 10 #fcfcfc #000000 #000000
-12700 1;
+7600 1;
 #X obj 322 190 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-3-position-s
 \$0-kaseta-delay-head-3-position-r H3 133 7 0 10 #fcfcfc #000000 #000000
-12700 1;
+16200 1;
 #X obj 322 205 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-4-position-s
 \$0-kaseta-delay-head-4-position-r H4 133 7 0 10 #fcfcfc #000000 #000000
-12700 1;
+25400 1;
 #X obj 762 787 / 127;
 #X obj 762 764 r \$0-kaseta-delay-length-s;
 #X obj 762 809 s \$0-kaseta-delay-length-pot;
@@ -2057,7 +2057,11 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
 #X text 473 180 O;
 #X text 473 195 S;
 #X obj 439 311 tgl 15 1 \$0-kaseta-delay-quantization-s \$0-kaseta-delay-quantization-r
-QUANT 17 7 0 10 #fcfcfc #000000 #000000 1 1;
+QUANT 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X msg 1778 241 delay_quantization \$1;
+#X obj 1778 217 r \$0-kaseta-delay-quantization-switch;
+#X obj 1014 762 r \$0-kaseta-delay-quantization-s;
+#X obj 1014 783 s \$0-kaseta-delay-quantization-switch;
 #X connect 1 0 3 0;
 #X connect 3 0 4 0;
 #X connect 4 0 2 0;
@@ -2184,4 +2188,7 @@ QUANT 17 7 0 10 #fcfcfc #000000 #000000 1 1;
 #X connect 181 0 25 0;
 #X connect 182 0 25 0;
 #X connect 183 0 25 0;
+#X connect 188 0 25 0;
+#X connect 189 0 188 0;
+#X connect 190 0 191 0;
 #X coords 0 -1 1 1 400 240 2 100 100;
