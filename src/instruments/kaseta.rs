@@ -98,10 +98,10 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     );
     register_float_method(class, "delay_quantization_6", set_delay_quantization_6);
     register_float_method(class, "delay_quantization_8", set_delay_quantization_8);
-    register_float_method(class, "delay_head_1_delay", set_delay_head_1_play);
-    register_float_method(class, "delay_head_2_delay", set_delay_head_2_play);
-    register_float_method(class, "delay_head_3_delay", set_delay_head_3_play);
-    register_float_method(class, "delay_head_4_delay", set_delay_head_4_play);
+    register_float_method(class, "delay_head_1_play", set_delay_head_1_play);
+    register_float_method(class, "delay_head_2_play", set_delay_head_2_play);
+    register_float_method(class, "delay_head_3_play", set_delay_head_3_play);
+    register_float_method(class, "delay_head_4_play", set_delay_head_4_play);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
