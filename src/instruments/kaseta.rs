@@ -102,6 +102,10 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "delay_head_2_play", set_delay_head_2_play);
     register_float_method(class, "delay_head_3_play", set_delay_head_3_play);
     register_float_method(class, "delay_head_4_play", set_delay_head_4_play);
+    register_float_method(class, "delay_head_1_feedback", set_delay_head_1_feedback);
+    register_float_method(class, "delay_head_2_feedback", set_delay_head_2_feedback);
+    register_float_method(class, "delay_head_3_feedback", set_delay_head_3_feedback);
+    register_float_method(class, "delay_head_4_feedback", set_delay_head_4_feedback);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -266,6 +270,26 @@ unsafe extern "C" fn set_delay_head_3_play(class: *mut Class, enabled: f32) {
 unsafe extern "C" fn set_delay_head_4_play(class: *mut Class, enabled: f32) {
     let enabled = enabled > 0.5;
     apply_control_action(class, ControlAction::SetDelayHeadPlay(3, enabled));
+}
+
+unsafe extern "C" fn set_delay_head_1_feedback(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadFeedback(0, enabled));
+}
+
+unsafe extern "C" fn set_delay_head_2_feedback(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadFeedback(1, enabled));
+}
+
+unsafe extern "C" fn set_delay_head_3_feedback(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadFeedback(2, enabled));
+}
+
+unsafe extern "C" fn set_delay_head_4_feedback(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadFeedback(3, enabled));
 }
 
 unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
