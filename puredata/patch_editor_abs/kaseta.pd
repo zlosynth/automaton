@@ -58,13 +58,13 @@
 #X obj 924 604 s \$0-kaseta-delay-head-3-position-r;
 #X obj 933 580 s \$0-kaseta-delay-head-4-position-r;
 #X obj 84 653 pack f f f f f f f f f f f f f f f f f;
-#X obj 301 458 r \$0-kaseta-delay-quantization-s;
-#X obj 943 556 s \$0-kaseta-delay-quantization-r;
 #X obj 695 441 unpack f f f f f f f f f f f f f f f f f;
 #X msg 84 691 set \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10 \$11 \$12
 \$13 \$14 \$15 \$16 \$17, f 63;
+#X obj 301 458 r \$0-kaseta-delay-quantization-8-s;
+#X obj 943 556 s \$0-kaseta-delay-quantization-8-r;
 #X connect 0 0 14 0;
-#X connect 1 0 56 0;
+#X connect 1 0 54 0;
 #X connect 2 0 1 0;
 #X connect 3 0 1 0;
 #X connect 5 0 3 0;
@@ -102,26 +102,26 @@
 #X connect 45 0 53 13;
 #X connect 46 0 53 14;
 #X connect 47 0 53 15;
-#X connect 53 0 57 0;
-#X connect 54 0 53 16;
-#X connect 56 0 19 0;
-#X connect 56 1 20 0;
-#X connect 56 2 21 0;
-#X connect 56 3 22 0;
-#X connect 56 4 23 0;
-#X connect 56 5 24 0;
-#X connect 56 6 25 0;
-#X connect 56 7 40 0;
-#X connect 56 8 39 0;
-#X connect 56 9 42 0;
-#X connect 56 10 41 0;
-#X connect 56 11 48 0;
-#X connect 56 12 49 0;
-#X connect 56 13 50 0;
-#X connect 56 14 51 0;
-#X connect 56 15 52 0;
-#X connect 56 16 55 0;
-#X connect 57 0 4 0;
+#X connect 53 0 55 0;
+#X connect 54 0 19 0;
+#X connect 54 1 20 0;
+#X connect 54 2 21 0;
+#X connect 54 3 22 0;
+#X connect 54 4 23 0;
+#X connect 54 5 24 0;
+#X connect 54 6 25 0;
+#X connect 54 7 40 0;
+#X connect 54 8 39 0;
+#X connect 54 9 42 0;
+#X connect 54 10 41 0;
+#X connect 54 11 48 0;
+#X connect 54 12 49 0;
+#X connect 54 13 50 0;
+#X connect 54 14 51 0;
+#X connect 54 15 52 0;
+#X connect 54 16 57 0;
+#X connect 55 0 4 0;
+#X connect 56 0 53 16;
 #X restore 93 489 pd state-saving-multiple-instances;
 #X obj 93 564 s \$0-instance-num;
 #X obj 93 516 makefilename %d;
@@ -764,46 +764,10 @@
 #X obj 919 672 s \$0-kaseta-delay-head-3-position-r;
 #X obj 929 625 s \$0-kaseta-delay-head-4-position-r;
 #X obj 107 591 pack f f f f f f f f f f f f f f f f f;
-#X obj 330 514 r \$0-kaseta-delay-quantization-s;
 #X obj 635 256 unpack f f f f f f f f f f f f f f f f f;
-#N canvas 0 22 1916 1001 morph-parameters 0;
-#X obj 176 94 inlet;
-#X obj 176 236 pack f f;
-#X obj 176 261 line;
-#X obj 209 117 r preset-manager-morph-s;
-#X msg 72 244 stop;
-#X obj 72 214 r STOP-MORPH!;
-#X obj 209 206 spigot;
-#X obj 398 137 t f f;
-#X obj 455 154 == 0;
-#X obj 221 176 f;
-#X floatatom 455 222 5 0 0 0 - - - 0;
-#X obj 398 159 t b f;
-#X floatatom 425 192 5 0 0 0 - - - 0;
-#X obj 209 139 t f f;
-#X obj 398 102 r parameters-s;
-#X obj 176 288 outlet;
-#X connect 0 0 1 0;
-#X connect 1 0 2 0;
-#X connect 2 0 15 0;
-#X connect 3 0 13 0;
-#X connect 4 0 2 0;
-#X connect 5 0 4 0;
-#X connect 6 0 1 1;
-#X connect 7 0 11 0;
-#X connect 7 1 8 0;
-#X connect 8 0 10 0;
-#X connect 9 0 6 0;
-#X connect 10 0 1 1;
-#X connect 11 0 9 0;
-#X connect 11 1 12 0;
-#X connect 12 0 6 1;
-#X connect 13 0 6 0;
-#X connect 13 1 9 1;
-#X connect 14 0 7 0;
-#X restore 939 555 pd morph-parameters;
-#X obj 939 578 s \$0-kaseta-delay-quantization-r;
-#X connect 0 0 77 0;
+#X obj 330 514 r \$0-kaseta-delay-quantization-8-s;
+#X obj 939 578 s \$0-kaseta-delay-quantization-8-r;
+#X connect 0 0 76 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 4 0 2 0;
@@ -867,25 +831,24 @@
 #X connect 70 0 73 0;
 #X connect 71 0 74 0;
 #X connect 75 0 26 0;
-#X connect 76 0 75 16;
-#X connect 77 0 36 0;
-#X connect 77 1 24 0;
-#X connect 77 2 25 0;
-#X connect 77 3 37 0;
-#X connect 77 4 38 0;
-#X connect 77 5 39 0;
-#X connect 77 6 40 0;
-#X connect 77 7 52 0;
-#X connect 77 8 53 0;
-#X connect 77 9 56 0;
-#X connect 77 10 57 0;
-#X connect 77 11 65 0;
-#X connect 77 12 67 0;
-#X connect 77 13 69 0;
-#X connect 77 14 70 0;
-#X connect 77 15 71 0;
-#X connect 77 16 78 0;
-#X connect 78 0 79 0;
+#X connect 76 0 36 0;
+#X connect 76 1 24 0;
+#X connect 76 2 25 0;
+#X connect 76 3 37 0;
+#X connect 76 4 38 0;
+#X connect 76 5 39 0;
+#X connect 76 6 40 0;
+#X connect 76 7 52 0;
+#X connect 76 8 53 0;
+#X connect 76 9 56 0;
+#X connect 76 10 57 0;
+#X connect 76 11 65 0;
+#X connect 76 12 67 0;
+#X connect 76 13 69 0;
+#X connect 76 14 70 0;
+#X connect 76 15 71 0;
+#X connect 76 16 78 0;
+#X connect 77 0 75 16;
 #X restore 94 461 pd state-saving-via-preset-manager-module;
 #N canvas 396 31 1916 1001 parameter-nudging-system 0;
 #X obj 540 67 clip 0 127;
@@ -1560,48 +1523,6 @@
 #X restore 258 546 pd nudge-parameters;
 #X obj 258 522 r \$0-kaseta-delay-head-4-position-s;
 #X obj 258 600 s \$0-kaseta-delay-head-4-position-r;
-#X obj 485 568 clip 0 127;
-#N canvas 0 22 1916 1001 nudge-parameters 0;
-#X obj 124 234 random;
-#X obj 232 335 f;
-#X obj 232 368 +;
-#X obj 257 166 random 2;
-#X obj 124 275 t f f;
-#X obj 124 351 t b f;
-#X obj 124 297 *;
-#X obj 257 188 sel 0 1;
-#X msg 257 280 -1;
-#X msg 335 280 1;
-#X obj 124 149 t b b b;
-#X obj 124 74 r NUDGE!;
-#X obj 157 193 r NUDGE-RANGE;
-#X obj 247 308 inlet;
-#X obj 232 397 outlet;
-#X obj 124 96 spigot;
-#X obj 185 79 r parameters2-s;
-#X connect 0 0 4 0;
-#X connect 1 0 2 0;
-#X connect 2 0 14 0;
-#X connect 3 0 7 0;
-#X connect 4 0 6 0;
-#X connect 5 0 2 0;
-#X connect 5 1 2 1;
-#X connect 6 0 5 0;
-#X connect 7 0 8 0;
-#X connect 7 1 9 0;
-#X connect 8 0 6 1;
-#X connect 9 0 6 1;
-#X connect 10 0 0 0;
-#X connect 10 1 1 0;
-#X connect 10 2 3 0;
-#X connect 11 0 15 0;
-#X connect 12 0 0 1;
-#X connect 13 0 1 1;
-#X connect 15 0 10 0;
-#X connect 16 0 15 1;
-#X restore 485 546 pd nudge-parameters;
-#X obj 485 522 r \$0-kaseta-delay-quantization-s;
-#X obj 485 600 s \$0-kaseta-delay-quantization-r;
 #X connect 0 0 19 0;
 #X connect 1 0 0 0;
 #X connect 2 0 17 0;
@@ -1650,9 +1571,6 @@
 #X connect 60 0 63 0;
 #X connect 61 0 60 0;
 #X connect 62 0 61 0;
-#X connect 64 0 67 0;
-#X connect 65 0 64 0;
-#X connect 66 0 65 0;
 #X restore 95 433 pd parameter-nudging-system;
 #N canvas 474 23 1916 1001 external-messages 0;
 #X floatatom 109 625 5 0 0 0 - - - 0;
@@ -1735,17 +1653,17 @@
 #X obj 818 647 s \$0-kaseta-delay-head-2-position;
 #X obj 974 511 s \$0-kaseta-delay-head-3-position;
 #X obj 1050 646 s \$0-kaseta-delay-head-4-position;
-#X obj 185 380 route PRE-AMP DRIVE SATURATION BIAS WOW_FREQ WOW_DEPTH
-DELAY_LENGTH DELAY_HEAD_1_POSITION DELAY_HEAD_2_POSITION DELAY_HEAD_3_POSITION
-DELAY_HEAD_4_POSITION DELAY_QUANTIZATION, f 176;
 #X floatatom 1188 491 5 0 0 0 - - - 0;
 #X obj 1188 470 f;
 #X obj 1188 418 t b f;
 #X obj 1188 441 spigot;
 #X obj 1236 425 r \$0-msg-spigot;
-#X obj 1188 511 s \$0-kaseta-delay-quantization;
+#X obj 185 380 route PRE-AMP DRIVE SATURATION BIAS WOW_FREQ WOW_DEPTH
+DELAY_LENGTH DELAY_HEAD_1_POSITION DELAY_HEAD_2_POSITION DELAY_HEAD_3_POSITION
+DELAY_HEAD_4_POSITION DELAY_QUANTIZATION_8, f 176;
+#X obj 1188 511 s \$0-kaseta-delay-quantization-8;
 #X connect 0 0 33 0;
-#X connect 1 0 79 0;
+#X connect 1 0 84 0;
 #X connect 2 0 14 0;
 #X connect 3 0 2 0;
 #X connect 4 0 3 1;
@@ -1825,24 +1743,24 @@ DELAY_HEAD_4_POSITION DELAY_QUANTIZATION, f 176;
 #X connect 73 1 72 1;
 #X connect 74 0 72 0;
 #X connect 75 0 74 1;
-#X connect 79 0 10 0;
-#X connect 79 1 19 0;
-#X connect 79 2 24 0;
-#X connect 79 3 29 0;
-#X connect 79 4 39 0;
-#X connect 79 5 44 0;
-#X connect 79 6 51 0;
-#X connect 79 7 56 0;
-#X connect 79 8 63 0;
-#X connect 79 9 68 0;
-#X connect 79 10 73 0;
-#X connect 79 11 82 0;
-#X connect 80 0 85 0;
-#X connect 81 0 80 0;
-#X connect 82 0 83 0;
-#X connect 82 1 81 1;
-#X connect 83 0 81 0;
-#X connect 84 0 83 1;
+#X connect 79 0 85 0;
+#X connect 80 0 79 0;
+#X connect 81 0 82 0;
+#X connect 81 1 80 1;
+#X connect 82 0 80 0;
+#X connect 83 0 82 1;
+#X connect 84 0 10 0;
+#X connect 84 1 19 0;
+#X connect 84 2 24 0;
+#X connect 84 3 29 0;
+#X connect 84 4 39 0;
+#X connect 84 5 44 0;
+#X connect 84 6 51 0;
+#X connect 84 7 56 0;
+#X connect 84 8 63 0;
+#X connect 84 9 68 0;
+#X connect 84 10 73 0;
+#X connect 84 11 81 0;
 #X restore 96 407 pd external-messages;
 #X obj 574 653 / 127;
 #X obj 105 110 cnv 5 5 5 empty empty IN 0 0 0 8 #fcfcfc #404040 0;
@@ -1857,17 +1775,17 @@ DELAY_HEAD_4_POSITION DELAY_QUANTIZATION, f 176;
 #X obj 154 128 cnv 5 5 5 empty \$0-instance-num 2 0 0 0 12 #fcfcfc
 #404040 0;
 #X obj 110 145 hsl 128 15 1.27 127 1 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
-PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 7800 1;
+PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 3900 1;
 #X obj 110 160 hsl 128 15 0 127 0 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
-DRIVE 133 7 0 10 #fcfcfc #000000 #000000 8200 1;
+DRIVE 133 7 0 10 #fcfcfc #000000 #000000 4100 1;
 #X obj 110 175 hsl 128 15 0 127 0 1 \$0-kaseta-drive-att-s \$0-kaseta-drive-att-r
 ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 110 190 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-s \$0-kaseta-saturation-r
-SATURATION 133 7 0 10 #fcfcfc #000000 #000000 7400 1;
+SATURATION 133 7 0 10 #fcfcfc #000000 #000000 3700 1;
 #X obj 110 205 hsl 128 15 0 127 0 1 \$0-kaseta-saturation-att-s \$0-kaseta-saturation-att-r
 ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 110 220 hsl 128 15 0 127 0 1 \$0-kaseta-bias-s \$0-kaseta-bias-r
-BIAS 133 7 0 10 #fcfcfc #000000 #000000 4800 1;
+BIAS 133 7 0 10 #fcfcfc #000000 #000000 2400 1;
 #X obj 110 235 hsl 128 15 0 127 0 1 \$0-kaseta-bias-att-s \$0-kaseta-bias-att-r
 ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 94 626 r~ \$0-kaseta-out;
@@ -1935,12 +1853,12 @@ ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 1601 526 r \$0-kaseta-wow-depth-cv;
 #X msg 1601 550 wow_depth_cv \$1;
 #X obj 110 250 hsl 128 15 0 127 0 1 \$0-kaseta-wow-frequency-s \$0-kaseta-wow-frequency-r
-WOW\\\ FREQ 133 7 0 10 #fcfcfc #000000 #000000 4400 1;
+WOW\\\ FREQ 133 7 0 10 #fcfcfc #000000 #000000 2200 1;
 #X obj 110 265 hsl 128 15 0 127 0 1 \$0-kaseta-wow-frequency-att-s
 \$0-kaseta-wow-frequency-att-r ATT 133 7 0 10 #9898dc #000000 #000000
 0 1;
 #X obj 110 280 hsl 128 15 0 127 0 1 \$0-kaseta-wow-depth-s \$0-kaseta-wow-depth-r
-WOW\\\ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 3600 1;
+WOW\\\ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 1800 1;
 #X obj 110 295 hsl 128 15 0 127 0 1 \$0-kaseta-wow-depth-att-s \$0-kaseta-wow-depth-att-r
 ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 762 648 / 127;
@@ -1970,19 +1888,19 @@ ATT 133 7 0 10 #9898dc #000000 #000000 0 1;
 #X obj 283 109 cnv 5 5 5 empty empty WOW\\\ D. 0 0 0 8 #fcfcfc #7474a4
 0;
 #X obj 322 145 hsl 128 15 0 127 0 1 \$0-kaseta-delay-length-s \$0-kaseta-delay-length-r
-DELAY 133 7 0 10 #fcfcfc #000000 #000000 2800 1;
+DELAY 133 7 0 10 #fcfcfc #000000 #000000 1400 1;
 #X obj 322 160 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-1-position-s
 \$0-kaseta-delay-head-1-position-r H1 133 7 0 10 #fcfcfc #000000 #000000
 0 1;
 #X obj 322 175 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-position-s
 \$0-kaseta-delay-head-2-position-r H2 133 7 0 10 #fcfcfc #000000 #000000
-7600 1;
+3800 1;
 #X obj 322 190 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-3-position-s
 \$0-kaseta-delay-head-3-position-r H3 133 7 0 10 #fcfcfc #000000 #000000
-16200 1;
+8100 1;
 #X obj 322 205 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-4-position-s
 \$0-kaseta-delay-head-4-position-r H4 133 7 0 10 #fcfcfc #000000 #000000
-25400 1;
+12700 1;
 #X obj 762 787 / 127;
 #X obj 762 764 r \$0-kaseta-delay-length-s;
 #X obj 762 809 s \$0-kaseta-delay-length-pot;
@@ -2056,12 +1974,12 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 2800 1;
 #X text 473 165 P;
 #X text 473 180 O;
 #X text 473 195 S;
-#X obj 439 311 tgl 15 1 \$0-kaseta-delay-quantization-s \$0-kaseta-delay-quantization-r
-QUANT 17 7 0 10 #fcfcfc #000000 #000000 0 1;
-#X msg 1778 241 delay_quantization \$1;
-#X obj 1778 217 r \$0-kaseta-delay-quantization-switch;
-#X obj 1014 762 r \$0-kaseta-delay-quantization-s;
-#X obj 1014 783 s \$0-kaseta-delay-quantization-switch;
+#X obj 433 314 tgl 15 1 \$0-kaseta-delay-quantization-8-s \$0-kaseta-delay-quantization-8-r
+QUANT\ 8 17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 1014 762 r \$0-kaseta-delay-quantization-8-s;
+#X obj 1014 783 s \$0-kaseta-delay-quantization-8-switch;
+#X obj 1778 217 r \$0-kaseta-delay-quantization-8-switch;
+#X msg 1778 241 delay_quantization_8 \$1;
 #X connect 1 0 3 0;
 #X connect 3 0 4 0;
 #X connect 4 0 2 0;
@@ -2188,7 +2106,7 @@ QUANT 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X connect 181 0 25 0;
 #X connect 182 0 25 0;
 #X connect 183 0 25 0;
-#X connect 188 0 25 0;
-#X connect 189 0 188 0;
+#X connect 188 0 189 0;
 #X connect 190 0 191 0;
+#X connect 191 0 25 0;
 #X coords 0 -1 1 1 400 240 2 100 100;
