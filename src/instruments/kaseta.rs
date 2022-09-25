@@ -96,6 +96,8 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         "delay_head_4_position_cv",
         set_delay_head_4_position_cv,
     );
+    register_float_method(class, "delay_quantization_6", set_delay_quantization_6);
+    register_float_method(class, "delay_quantization_8", set_delay_quantization_8);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -230,6 +232,16 @@ unsafe extern "C" fn set_delay_head_4_position_cv(class: *mut Class, position: f
 
 unsafe extern "C" fn set_delay_head_4_position_pot(class: *mut Class, position: f32) {
     apply_control_action(class, ControlAction::SetDelayHeadPositionPot(3, position));
+}
+
+unsafe extern "C" fn set_delay_quantization_6(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayQuantizationSix(enabled));
+}
+
+unsafe extern "C" fn set_delay_quantization_8(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayQuantizationEight(enabled));
 }
 
 unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
