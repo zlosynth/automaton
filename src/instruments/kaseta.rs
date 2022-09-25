@@ -98,6 +98,10 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     );
     register_float_method(class, "delay_quantization_6", set_delay_quantization_6);
     register_float_method(class, "delay_quantization_8", set_delay_quantization_8);
+    register_float_method(class, "delay_head_1_delay", set_delay_head_1_play);
+    register_float_method(class, "delay_head_2_delay", set_delay_head_2_play);
+    register_float_method(class, "delay_head_3_delay", set_delay_head_3_play);
+    register_float_method(class, "delay_head_4_delay", set_delay_head_4_play);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -242,6 +246,26 @@ unsafe extern "C" fn set_delay_quantization_6(class: *mut Class, enabled: f32) {
 unsafe extern "C" fn set_delay_quantization_8(class: *mut Class, enabled: f32) {
     let enabled = enabled > 0.5;
     apply_control_action(class, ControlAction::SetDelayQuantizationEight(enabled));
+}
+
+unsafe extern "C" fn set_delay_head_1_play(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadPlay(0, enabled));
+}
+
+unsafe extern "C" fn set_delay_head_2_play(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadPlay(1, enabled));
+}
+
+unsafe extern "C" fn set_delay_head_3_play(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadPlay(2, enabled));
+}
+
+unsafe extern "C" fn set_delay_head_4_play(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayHeadPlay(3, enabled));
 }
 
 unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
