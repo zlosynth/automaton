@@ -110,6 +110,10 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "delay_head_2_feedback_amp", set_delay_head_2_feedback_amount);
     register_float_method(class, "delay_head_3_feedback_amp", set_delay_head_3_feedback_amount);
     register_float_method(class, "delay_head_4_feedback_amp", set_delay_head_4_feedback_amount);
+    register_float_method(class, "delay_head_1_volume", set_delay_head_1_volume);
+    register_float_method(class, "delay_head_2_volume", set_delay_head_2_volume);
+    register_float_method(class, "delay_head_3_volume", set_delay_head_3_volume);
+    register_float_method(class, "delay_head_4_volume", set_delay_head_4_volume);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -310,6 +314,22 @@ unsafe extern "C" fn set_delay_head_3_feedback_amount(class: *mut Class, value: 
 
 unsafe extern "C" fn set_delay_head_4_feedback_amount(class: *mut Class, value: f32) {
     apply_control_action(class, ControlAction::SetDelayHeadFeedbackAmount(3, value));
+}
+
+unsafe extern "C" fn set_delay_head_1_volume(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadVolume(0, value));
+}
+
+unsafe extern "C" fn set_delay_head_2_volume(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadVolume(1, value));
+}
+
+unsafe extern "C" fn set_delay_head_3_volume(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadVolume(2, value));
+}
+
+unsafe extern "C" fn set_delay_head_4_volume(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadVolume(3, value));
 }
 
 unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
