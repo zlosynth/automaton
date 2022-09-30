@@ -1,9 +1,11 @@
 use core::mem::MaybeUninit;
+use rand::prelude::*;
 use std::os::raw::{c_int, c_void};
 use std::sync::Mutex;
 
 use kaseta_control::{self as control, Cache, ControlAction};
 use kaseta_dsp::processor::Processor;
+use kaseta_dsp::random::Random;
 use sirena::memory_manager::MemoryManager;
 
 use crate::{cstr, log};
@@ -16,6 +18,15 @@ lazy_static! {
         let memory_manager = MemoryManager::from(unsafe { &mut MEMORY[..] });
         Mutex::new(memory_manager)
     };
+}
+
+struct KasetaRandom;
+
+impl Random for KasetaRandom {
+    fn normal(&mut self) -> f32 {
+        let mut rng = rand::thread_rng();
+        rng.gen()
+    }
 }
 
 #[repr(C)]
@@ -54,6 +65,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "wow_frequency_cv", set_wow_frequency_cv);
     register_float_method(class, "wow_depth_pot", set_wow_depth_pot);
     register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
+    register_float_method(class, "wow_amp_noise", set_wow_amplitude_noise_pot);
     register_float_method(class, "delay_length_pot", set_delay_length_pot);
     register_float_method(class, "delay_length_cv", set_delay_length_cv);
     register_float_method(
@@ -106,10 +118,26 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "delay_head_2_feedback", set_delay_head_2_feedback);
     register_float_method(class, "delay_head_3_feedback", set_delay_head_3_feedback);
     register_float_method(class, "delay_head_4_feedback", set_delay_head_4_feedback);
-    register_float_method(class, "delay_head_1_feedback_amp", set_delay_head_1_feedback_amount);
-    register_float_method(class, "delay_head_2_feedback_amp", set_delay_head_2_feedback_amount);
-    register_float_method(class, "delay_head_3_feedback_amp", set_delay_head_3_feedback_amount);
-    register_float_method(class, "delay_head_4_feedback_amp", set_delay_head_4_feedback_amount);
+    register_float_method(
+        class,
+        "delay_head_1_feedback_amp",
+        set_delay_head_1_feedback_amount,
+    );
+    register_float_method(
+        class,
+        "delay_head_2_feedback_amp",
+        set_delay_head_2_feedback_amount,
+    );
+    register_float_method(
+        class,
+        "delay_head_3_feedback_amp",
+        set_delay_head_3_feedback_amount,
+    );
+    register_float_method(
+        class,
+        "delay_head_4_feedback_amp",
+        set_delay_head_4_feedback_amount,
+    );
     register_float_method(class, "delay_head_1_volume", set_delay_head_1_volume);
     register_float_method(class, "delay_head_2_volume", set_delay_head_2_volume);
     register_float_method(class, "delay_head_3_volume", set_delay_head_3_volume);
@@ -208,6 +236,10 @@ unsafe extern "C" fn set_wow_depth_pot(class: *mut Class, bias: f32) {
 
 unsafe extern "C" fn set_wow_depth_cv(class: *mut Class, bias: f32) {
     apply_control_action(class, ControlAction::SetWowDepthCV(bias));
+}
+
+unsafe extern "C" fn set_wow_amplitude_noise_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowAmplitudeNoisePot(value));
 }
 
 unsafe extern "C" fn set_delay_length_cv(class: *mut Class, bias: f32) {
@@ -354,7 +386,7 @@ fn perform(
             *frame = inlets[0][index];
         }
 
-        class.processor.process(&mut buffer);
+        class.processor.process(&mut buffer, &mut KasetaRandom);
 
         for (i, frame) in buffer.iter().enumerate() {
             let index = chunk_index * BUFFER_LEN + i;

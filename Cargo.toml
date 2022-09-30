@@ -14,6 +14,7 @@ crate-type = ["cdylib"]
 lazy_static = "1.4"
 pd-sys = "0.1.0"
 field-offset = "0.3"
+rand = "0.8"
 # achordion-lib = { path = "../achordion/lib" }
 achordion-lib = { git = "https://github.com/zlosynth/achordion", version = "2.2.1" }
 # achordion-bank = { path = "../achordion/bank", features = ["fft"] }
