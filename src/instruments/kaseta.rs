@@ -66,6 +66,12 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "wow_depth_pot", set_wow_depth_pot);
     register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
     register_float_method(class, "wow_amp_noise", set_wow_amplitude_noise_pot);
+    register_float_method(class, "wow_amp_spring", set_wow_amplitude_spring_pot);
+    register_float_method(class, "wow_amp_filter", set_wow_amplitude_filter_pot);
+    register_float_method(class, "wow_phs_noise", set_wow_phase_noise_pot);
+    register_float_method(class, "wow_phs_spring", set_wow_phase_spring_pot);
+    register_float_method(class, "wow_phs_filter", set_wow_phase_filter_pot);
+    register_float_method(class, "wow_phs_drift", set_wow_phase_drift_pot);
     register_float_method(class, "delay_length_pot", set_delay_length_pot);
     register_float_method(class, "delay_length_cv", set_delay_length_cv);
     register_float_method(
@@ -240,6 +246,30 @@ unsafe extern "C" fn set_wow_depth_cv(class: *mut Class, bias: f32) {
 
 unsafe extern "C" fn set_wow_amplitude_noise_pot(class: *mut Class, value: f32) {
     apply_control_action(class, ControlAction::SetWowAmplitudeNoisePot(value));
+}
+
+unsafe extern "C" fn set_wow_amplitude_spring_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowAmplitudeSpringPot(value));
+}
+
+unsafe extern "C" fn set_wow_amplitude_filter_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowAmplitudeFilterPot(value));
+}
+
+unsafe extern "C" fn set_wow_phase_noise_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowPhaseNoisePot(value));
+}
+
+unsafe extern "C" fn set_wow_phase_spring_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowPhaseSpringPot(value));
+}
+
+unsafe extern "C" fn set_wow_phase_filter_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowPhaseFilterPot(value));
+}
+
+unsafe extern "C" fn set_wow_phase_drift_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowPhaseDriftPot(value));
 }
 
 unsafe extern "C" fn set_delay_length_cv(class: *mut Class, bias: f32) {
