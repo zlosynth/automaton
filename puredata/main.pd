@@ -4140,7 +4140,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 5 256;
+#fcfcfc #000000 #000000 6 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4517,7 +4517,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6607,7 +6607,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 3 256;
+#fcfcfc #000000 #000000 4 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6732,7 +6732,10 @@ and send to the name of the module \, for example [s basic-osc];
 7 0 10 #fcfcfc #000000 #000000;
 #X obj 507 348 kaseta 2;
 #X obj 511 629 maestro4 2;
-#X obj 553 88 achordion 3;
+#X obj 915 639 scope 6;
+#X obj 546 172 external-audio 2;
+#X obj 855 76 achordion 4;
 #X connect 11 0 12 0;
-#X connect 13 0 11 0;
-#X connect 13 0 12 2;
+#X connect 11 0 13 0;
+#X connect 14 0 11 0;
+#X connect 15 0 11 0;

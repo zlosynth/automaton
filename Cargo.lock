@@ -8,7 +8,7 @@ version = "2.2.1"
 source = "git+https://github.com/zlosynth/achordion#731fdaed885bec2b706c46ff1ae889c7644f43fb"
 dependencies = [
  "microfft 0.4.0",
- "micromath",
+ "micromath 1.1.1",
  "wav",
 ]
 
@@ -20,7 +20,7 @@ dependencies = [
  "crc",
  "field-offset",
  "lazy_static",
- "micromath",
+ "micromath 1.1.1",
 ]
 
 [[package]]
@@ -199,7 +199,7 @@ version = "0.1.0"
 dependencies = [
  "kaseta-dsp",
  "libm",
- "micromath",
+ "micromath 1.1.1",
 ]
 
 [[package]]
@@ -207,6 +207,7 @@ name = "kaseta-dsp"
 version = "0.1.0"
 dependencies = [
  "libm",
+ "micromath 2.0.0",
  "sirena",
 ]
 
@@ -282,6 +283,12 @@ name = "micromath"
 version = "1.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bc4010833aea396656c2f91ee704d51a6f1329ec2ab56ffd00bfd56f7481ea94"
+
+[[package]]
+name = "micromath"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "39617bc909d64b068dcffd0e3e31679195b5576d0c83fadc52690268cc2b2b55"
 
 [[package]]
 name = "nb"
@@ -509,7 +516,7 @@ dependencies = [
  "heapless",
  "libm",
  "microfft 0.5.0",
- "micromath",
+ "micromath 1.1.1",
 ]
 
 [[package]]

@@ -67,7 +67,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
     register_float_method(class, "wow_amp_noise", set_wow_amplitude_noise_pot);
     register_float_method(class, "wow_amp_spring", set_wow_amplitude_spring_pot);
-    register_float_method(class, "wow_amp_filter", set_wow_amplitude_filter_pot);
+    register_float_method(class, "wow_amp_filter", set_wow_filter_pot);
     register_float_method(class, "wow_phs_noise", set_wow_phase_noise_pot);
     register_float_method(class, "wow_phs_spring", set_wow_phase_spring_pot);
     register_float_method(class, "wow_phs_drift", set_wow_phase_drift_pot);
@@ -251,8 +251,8 @@ unsafe extern "C" fn set_wow_amplitude_spring_pot(class: *mut Class, value: f32)
     apply_control_action(class, ControlAction::SetWowAmplitudeSpringPot(value));
 }
 
-unsafe extern "C" fn set_wow_amplitude_filter_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetWowAmplitudeFilterPot(value));
+unsafe extern "C" fn set_wow_filter_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetWowFilterPot(value));
 }
 
 unsafe extern "C" fn set_wow_phase_noise_pot(class: *mut Class, value: f32) {
