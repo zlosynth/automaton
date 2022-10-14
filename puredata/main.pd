@@ -26,7 +26,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -242,7 +242,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2732,7 +2732,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2948,7 +2948,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -3382,7 +3382,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4032,7 +4032,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 0 256;
+#fcfcfc #000000 #000000 1 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4193,7 +4193,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 4 256;
+#fcfcfc #000000 #000000 5 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6730,38 +6730,51 @@ and send to the name of the module \, for example [s basic-osc];
 #X floatatom 8 146 5 0 0 1 CPU% CPU - 0;
 #X obj 8 105 bng 15 250 50 0 open-reset-warning! empty <--RESET! 17
 7 0 10 #fcfcfc #000000 #000000;
-#X obj 503 335 kaseta 2;
-#X obj 556 688 maestro4 2;
+#X obj 502 235 kaseta 2;
+#X obj 552 722 maestro4 2;
 #X obj 915 639 scope 6;
 #X obj 857 39 external-audio 2;
 #X obj 1331 109 achordion 4;
-#X obj 1477 403 hsl 128 15 0 120 0 1 empty empty empty -2 -8 0 10 #fcfcfc
+#X obj 1477 403 hsl 128 15 0 120 0 0 empty empty empty -2 -8 0 10 #fcfcfc
 #000000 #000000 0 1;
 #X floatatom 1473 430 5 0 0 0 - - - 0;
-#X obj 1345 436 *~;
-#X obj 857 611 hsl 128 15 0 2 0 1 empty empty empty -2 -8 0 10 #fcfcfc
-#000000 #000000 12700 1;
-#X obj 561 119 hsl 128 15 0 60 0 1 empty empty empty -2 -8 0 10 #fcfcfc
-#000000 #000000 1000 1;
-#X floatatom 653 196 5 0 0 0 - - - 0;
-#X obj 525 201 *~;
-#X obj 517 265 clip~ -2 2;
+#X obj 857 611 hsl 128 15 0 10 0 1 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 600 1;
+#X obj 548 19 hsl 128 15 0 2 0 1 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 4300 1;
+#X floatatom 655 101 5 0 0 0 - - - 0;
+#X obj 527 106 *~;
+#X obj 519 170 clip~ -2 2;
 #X obj 780 624 *~;
 #X obj 514 630 *~ 0.8;
 #X obj 1318 493 clip~ -1 1;
+#X obj 1345 436 *~ 28;
+#X obj 1423 600 clock 5;
+#X obj 1433 725 random-voltages 3;
+#X obj 1364 828 bwl-osc 1;
+#X obj 1319 570 decay 3;
+#X obj 1119 883 vca 2;
+#X obj 1572 814 quantizer 1;
+#X connect 11 0 23 0;
 #X connect 11 0 24 0;
-#X connect 11 0 25 0;
-#X connect 14 0 22 0;
-#X connect 15 0 18 0;
+#X connect 11 0 31 0;
+#X connect 14 0 21 0;
+#X connect 15 0 26 0;
 #X connect 16 0 17 0;
-#X connect 16 0 18 1;
-#X connect 18 0 26 0;
-#X connect 19 0 24 1;
-#X connect 20 0 21 0;
-#X connect 20 0 22 1;
-#X connect 22 0 23 0;
-#X connect 23 0 11 0;
-#X connect 23 0 12 2;
-#X connect 24 0 13 0;
-#X connect 25 0 12 0;
-#X connect 26 0 11 0;
+#X connect 16 0 26 1;
+#X connect 18 0 23 1;
+#X connect 19 0 20 0;
+#X connect 19 0 21 1;
+#X connect 21 0 22 0;
+#X connect 22 0 11 0;
+#X connect 22 0 12 2;
+#X connect 23 0 13 0;
+#X connect 24 0 12 0;
+#X connect 25 0 11 0;
+#X connect 26 0 25 0;
+#X connect 27 0 30 0;
+#X connect 28 0 32 0;
+#X connect 29 0 11 0;
+#X connect 30 0 31 1;
+#X connect 31 0 12 4;
+#X connect 32 0 29 0;
