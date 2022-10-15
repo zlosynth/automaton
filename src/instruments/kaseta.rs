@@ -55,6 +55,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     );
 
     register_float_method(class, "pre_amp_pot", set_pre_amp_pot);
+    register_float_method(class, "dry_wet_pot", set_dry_wet_pot);
     register_float_method(class, "drive_pot", set_drive_pot);
     register_float_method(class, "drive_cv", set_drive_cv);
     register_float_method(class, "bias_pot", set_bias_pot);
@@ -191,6 +192,10 @@ unsafe fn register_float_method(
 
 unsafe extern "C" fn set_pre_amp_pot(class: *mut Class, pre_amp: f32) {
     apply_control_action(class, ControlAction::SetPreAmpPot(pre_amp));
+}
+
+unsafe extern "C" fn set_dry_wet_pot(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDryWetPot(value));
 }
 
 unsafe extern "C" fn set_drive_pot(class: *mut Class, drive: f32) {
