@@ -32,8 +32,14 @@ impl Random for KasetaRandom {
 #[repr(C)]
 struct Class {
     pd_obj: pd_sys::t_object,
-    solo_outlet: *mut pd_sys::_outlet,
-    chord_outlet: *mut pd_sys::_outlet,
+    led_1_outlet: *mut pd_sys::_outlet,
+    led_2_outlet: *mut pd_sys::_outlet,
+    led_3_outlet: *mut pd_sys::_outlet,
+    led_4_outlet: *mut pd_sys::_outlet,
+    led_5_outlet: *mut pd_sys::_outlet,
+    led_6_outlet: *mut pd_sys::_outlet,
+    led_7_outlet: *mut pd_sys::_outlet,
+    led_8_outlet: *mut pd_sys::_outlet,
     cache: Cache,
     processor: Processor,
     signal_dummy: f32,
@@ -50,7 +56,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         receiver = Class,
         dummy_offset = offset_of!(Class => signal_dummy),
         number_of_inlets = 1,
-        number_of_outlets = 1,
+        number_of_outlets = 9,
         callback = perform
     );
 
@@ -169,6 +175,14 @@ unsafe extern "C" fn new() -> *mut c_void {
     (*class).processor = processor;
 
     pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_1_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_2_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_3_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_4_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_5_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_6_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_7_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_8_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
 
     class as *mut c_void
 }
@@ -358,11 +372,20 @@ fn perform(
             *frame = inlets[0][index];
         }
 
-        class.processor.process(&mut buffer, &mut KasetaRandom);
+        let reaction = class.processor.process(&mut buffer, &mut KasetaRandom);
+        let leds = control::reduce_dsp_reaction(reaction, &mut (*class).cache);
 
         for (i, frame) in buffer.iter().enumerate() {
             let index = chunk_index * BUFFER_LEN + i;
             outlets[0][index] = *frame;
+            outlets[1][index] = if leds[0] {1.0} else {0.0};
+            outlets[2][index] = if leds[1] {1.0} else {0.0};
+            outlets[3][index] = if leds[2] {1.0} else {0.0};
+            outlets[4][index] = if leds[3] {1.0} else {0.0};
+            outlets[5][index] = if leds[4] {1.0} else {0.0};
+            outlets[6][index] = if leds[5] {1.0} else {0.0};
+            outlets[7][index] = if leds[6] {1.0} else {0.0};
+            outlets[8][index] = if leds[7] {1.0} else {0.0};
         }
     }
 }
