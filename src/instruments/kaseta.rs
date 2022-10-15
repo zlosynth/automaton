@@ -118,6 +118,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         "delay_head_4_position_cv",
         set_delay_head_4_position_cv,
     );
+    register_float_method(class, "delay_range", set_delay_range);
     register_float_method(class, "delay_quantization_6", set_delay_quantization_6);
     register_float_method(class, "delay_quantization_8", set_delay_quantization_8);
     register_float_method(
@@ -308,6 +309,11 @@ unsafe extern "C" fn set_delay_head_4_position_pot(class: *mut Class, position: 
     apply_control_action(class, ControlAction::SetDelayHeadPositionPot(3, position));
 }
 
+unsafe extern "C" fn set_delay_range(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayRangeSwitch(enabled));
+}
+
 unsafe extern "C" fn set_delay_quantization_6(class: *mut Class, enabled: f32) {
     let enabled = enabled > 0.5;
     apply_control_action(class, ControlAction::SetDelayQuantizationSix(enabled));
@@ -378,14 +384,14 @@ fn perform(
         for (i, frame) in buffer.iter().enumerate() {
             let index = chunk_index * BUFFER_LEN + i;
             outlets[0][index] = *frame;
-            outlets[1][index] = if leds[0] {1.0} else {0.0};
-            outlets[2][index] = if leds[1] {1.0} else {0.0};
-            outlets[3][index] = if leds[2] {1.0} else {0.0};
-            outlets[4][index] = if leds[3] {1.0} else {0.0};
-            outlets[5][index] = if leds[4] {1.0} else {0.0};
-            outlets[6][index] = if leds[5] {1.0} else {0.0};
-            outlets[7][index] = if leds[6] {1.0} else {0.0};
-            outlets[8][index] = if leds[7] {1.0} else {0.0};
+            outlets[1][index] = if leds[0] { 1.0 } else { 0.0 };
+            outlets[2][index] = if leds[1] { 1.0 } else { 0.0 };
+            outlets[3][index] = if leds[2] { 1.0 } else { 0.0 };
+            outlets[4][index] = if leds[3] { 1.0 } else { 0.0 };
+            outlets[5][index] = if leds[4] { 1.0 } else { 0.0 };
+            outlets[6][index] = if leds[5] { 1.0 } else { 0.0 };
+            outlets[7][index] = if leds[6] { 1.0 } else { 0.0 };
+            outlets[8][index] = if leds[7] { 1.0 } else { 0.0 };
         }
     }
 }
