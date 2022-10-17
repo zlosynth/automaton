@@ -87,6 +87,8 @@ f f f f f f f f f f f f f f f f f f, f 88;
 #X obj 1554 638 s \$0-kaseta-delay-wow-phs-drift-r;
 #X obj 140 109 r \$0-kaseta-dry-wet-s;
 #X obj 1198 878 s \$0-kaseta-dry-wet-r;
+#X obj 152 135 r \$0-kaseta-range-s;
+#X obj 1209 850 s \$0-kaseta-range-r;
 #X connect 0 0 14 0;
 #X connect 1 0 70 0;
 #X connect 2 0 1 0;
@@ -141,6 +143,7 @@ f f f f f f f f f f f f f f f f f f, f 88;
 #X connect 70 0 19 0;
 #X connect 70 1 20 0;
 #X connect 70 2 77 0;
+#X connect 70 3 79 0;
 #X connect 70 5 21 0;
 #X connect 70 7 29 0;
 #X connect 70 9 30 0;
@@ -166,6 +169,7 @@ f f f f f f f f f f f f f f f f f f, f 88;
 #X connect 70 37 74 0;
 #X connect 70 39 75 0;
 #X connect 76 0 68 2;
+#X connect 78 0 68 3;
 #X restore 93 599 pd state-saving-multiple-instances;
 #X obj 93 674 s \$0-instance-num;
 #X obj 93 626 makefilename %d;
@@ -1160,6 +1164,8 @@ f f f f f f f f f f f f f f f f f f, f 89;
 #X connect 14 0 7 0;
 #X restore 1077 705 pd morph-parameters;
 #X obj 1077 728 s \$0-kaseta-dry-wet-r;
+#X obj 158 173 r \$0-kaseta-range-s;
+#X obj 1088 681 s \$0-kaseta-range-r;
 #X connect 0 0 89 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
@@ -1235,6 +1241,7 @@ f f f f f f f f f f f f f f f f f f, f 89;
 #X connect 89 0 30 0;
 #X connect 89 1 24 0;
 #X connect 89 2 106 0;
+#X connect 89 3 109 0;
 #X connect 89 5 31 0;
 #X connect 89 7 37 0;
 #X connect 89 9 39 0;
@@ -1271,6 +1278,7 @@ f f f f f f f f f f f f f f f f f f, f 89;
 #X connect 100 0 104 0;
 #X connect 105 0 87 2;
 #X connect 106 0 107 0;
+#X connect 108 0 87 3;
 #X restore 94 571 pd state-saving-via-preset-manager-module;
 #N canvas 396 31 1916 1001 parameter-nudging-system 0;
 #X obj 401 67 clip 0 127;
@@ -2801,11 +2809,11 @@ WOW_PHS_SPRING WOW_PHS_FILTER WOW_PHS_DRIFT, f 198;
 #X obj 154 128 cnv 5 5 5 empty \$0-instance-num 2 0 0 0 12 #fcfcfc
 #404040 0;
 #X obj 110 145 hsl 128 15 1.27 127 1 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
-PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 7200 1;
+PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 14400 1;
 #X obj 110 175 hsl 128 15 0 127 0 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
-DRIVE 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+DRIVE 133 7 0 10 #fcfcfc #000000 #000000 15200 1;
 #X obj 110 190 hsl 128 15 0 127 0 1 \$0-kaseta-bias-s \$0-kaseta-bias-r
-BIAS 133 7 0 10 #fcfcfc #000000 #000000 6900 1;
+BIAS 133 7 0 10 #fcfcfc #000000 #000000 1800 1;
 #X obj 94 836 r~ \$0-kaseta-out;
 #X obj 94 858 outlet~ OUT;
 #X obj 1787 1387 s~ \$0-kaseta-out;
@@ -2850,9 +2858,9 @@ BIAS 133 7 0 10 #fcfcfc #000000 #000000 6900 1;
 #X obj 1874 606 r \$0-kaseta-wow-depth-cv;
 #X msg 1874 630 wow_depth_cv \$1;
 #X obj 330 145 hsl 128 15 0 127 0 1 \$0-kaseta-wow-frequency-s \$0-kaseta-wow-frequency-r
-FREQ 133 7 0 10 #fcfcfc #000000 #000000 500 1;
+FREQ 133 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 330 160 hsl 128 15 0 127 0 1 \$0-kaseta-wow-depth-s \$0-kaseta-wow-depth-r
-DEPTH 133 7 0 10 #fcfcfc #000000 #000000 2800 1;
+DEPTH 133 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 785 830 / 127;
 #X obj 785 807 r \$0-kaseta-wow-frequency-s;
 #X obj 785 852 s \$0-kaseta-wow-frequency-pot;
@@ -2874,19 +2882,19 @@ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 2800 1;
 #X obj 397 109 cnv 5 5 5 empty empty WOW\\\ D. 0 0 0 8 #fcfcfc #7474a4
 0;
 #X obj 542 145 hsl 128 15 0 127 0 1 \$0-kaseta-delay-length-s \$0-kaseta-delay-length-r
-DELAY 133 7 0 10 #fcfcfc #000000 #000000 100 1;
+DELAY 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X obj 542 164 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-1-position-s
 \$0-kaseta-delay-head-1-position-r H1 133 7 0 10 #fcfcfc #000000 #000000
 0 1;
 #X obj 542 179 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-position-s
 \$0-kaseta-delay-head-2-position-r H2 133 7 0 10 #fcfcfc #000000 #000000
-800 1;
+7000 1;
 #X obj 542 194 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-3-position-s
 \$0-kaseta-delay-head-3-position-r H3 133 7 0 10 #fcfcfc #000000 #000000
-1300 1;
+17400 1;
 #X obj 542 209 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-4-position-s
 \$0-kaseta-delay-head-4-position-r H4 133 7 0 10 #fcfcfc #000000 #000000
-1700 1;
+25400 1;
 #X obj 785 969 / 127;
 #X obj 785 946 r \$0-kaseta-delay-length-s;
 #X obj 785 991 s \$0-kaseta-delay-length-pot;
@@ -3005,7 +3013,7 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 100 1;
 #X msg 2114 597 delay_head_4_feedback_amp \$1;
 #X obj 542 229 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-1-volume-s
 \$0-kaseta-delay-head-1-volume-r H1 133 7 0 10 #fcfcfc #000000 #000000
-12700 1;
+25400 1;
 #X obj 542 244 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-volume-s
 \$0-kaseta-delay-head-2-volume-r H2 133 7 0 10 #fcfcfc #000000 #000000
 0 1;
@@ -3039,17 +3047,17 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 100 1;
 #X obj 2329 275 r \$0-kaseta-delay-head-4-volume-pot;
 #X msg 2329 300 delay_head_4_volume \$1;
 #X obj 330 209 hsl 128 15 0 127 0 1 \$0-kaseta-wow-amp-noise-s \$0-kaseta-wow-amp-noise-r
-NOISE 133 7 0 10 #fcfcfc #000000 #000000 300 1;
+NOISE 133 7 0 10 #fcfcfc #000000 #000000 600 1;
 #X obj 330 224 hsl 128 15 0 127 0 1 \$0-kaseta-wow-amp-spring-s \$0-kaseta-wow-amp-spring-r
-SPRING 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+SPRING 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X obj 330 175 hsl 128 15 0 127 0 1 \$0-kaseta-wow-amp-filter-s \$0-kaseta-wow-amp-filter-r
 FILTER 133 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 330 261 hsl 128 15 0 127 0 1 \$0-kaseta-wow-phs-noise-s \$0-kaseta-wow-phs-noise-r
 NOISE 133 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 330 276 hsl 128 15 0 127 0 1 \$0-kaseta-wow-phs-spring-s \$0-kaseta-wow-phs-spring-r
-SPRING 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+SPRING 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X obj 330 291 hsl 128 15 0 127 0 1 \$0-kaseta-wow-phs-drift-s \$0-kaseta-wow-phs-drift-r
-DRIFT 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+DRIFT 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X text 437 124 WOW;
 #X text 638 126 DELAY;
 #X text 175 124 HYSTERESIS;
@@ -3112,18 +3120,18 @@ RANGE 33 7 0 10 #fcfcfc #000000 #000000 0;
 QUANT6 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 112 277 hradio 15 1 0 2 \$0-kaseta-delay-quantization-8-s \$0-kaseta-delay-quantization-8-r
 QUANT8 33 7 0 10 #fcfcfc #000000 #000000 0;
-#X obj 112 292 hradio 15 1 0 2 empty empty TAP 33 7 0 10 #fcfcfc #000000
-#000000 0;
-#X obj 112 307 hradio 15 1 0 2 empty empty SYNC\\\ W/F 33 7 0 10 #fcfcfc
+#X obj 112 337 hradio 15 1 0 2 empty empty REWIND-> 33 7 0 10 #fcfcfc
 #000000 #000000 0;
-#X obj 112 322 hradio 15 1 0 2 empty empty CYCLE\\\ W/F 33 7 0 10 #fcfcfc
+#X obj 112 292 hradio 15 1 0 2 empty empty SYNC\\\ W/F 33 7 0 10 #fcfcfc
 #000000 #000000 0;
-#X obj 112 337 hradio 15 1 0 2 empty empty CRACKLING 33 7 0 10 #fcfcfc
+#X obj 112 307 hradio 15 1 0 2 empty empty CYCLE\\\ W/F 33 7 0 10 #fcfcfc
 #000000 #000000 0;
-#X obj 112 352 hradio 15 1 0 2 empty empty BLEND 33 7 0 10 #fcfcfc
+#X obj 112 322 hradio 15 1 0 2 empty empty CRACKLING 33 7 0 10 #fcfcfc
+#000000 #000000 0;
+#X obj 112 352 hradio 15 1 0 2 empty empty REWIND<- 33 7 0 10 #fcfcfc
 #000000 #000000 0;
 #X obj 110 160 hsl 128 15 0 127 0 1 \$0-kaseta-dry-wet-s \$0-kaseta-dry-wet-r
-DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5800 1;
+DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 10400 1;
 #X obj 597 917 / 127;
 #X obj 597 894 r \$0-kaseta-dry-wet-s;
 #X obj 597 939 s \$0-kaseta-dry-wet-pot;

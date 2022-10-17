@@ -13,7 +13,7 @@ use crate::{cstr, log};
 static mut CLASS: Option<*mut pd_sys::_class> = None;
 lazy_static! {
     static ref MEMORY_MANAGER: Mutex<MemoryManager> = {
-        static mut MEMORY: [MaybeUninit<u32>; 48000 * 4 * 20] =
+        static mut MEMORY: [MaybeUninit<u32>; 48000 * 4 * 60] =
             unsafe { MaybeUninit::uninit().assume_init() };
         let memory_manager = MemoryManager::from(unsafe { &mut MEMORY[..] });
         Mutex::new(memory_manager)
