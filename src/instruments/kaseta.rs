@@ -119,6 +119,8 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         set_delay_head_4_position_cv,
     );
     register_float_method(class, "delay_range", set_delay_range);
+    register_float_method(class, "delay_rewind_forward", set_delay_rewind_forward);
+    register_float_method(class, "delay_rewind_backward", set_delay_rewind_backward);
     register_float_method(class, "delay_quantization_6", set_delay_quantization_6);
     register_float_method(class, "delay_quantization_8", set_delay_quantization_8);
     register_float_method(
@@ -312,6 +314,16 @@ unsafe extern "C" fn set_delay_head_4_position_pot(class: *mut Class, position: 
 unsafe extern "C" fn set_delay_range(class: *mut Class, enabled: f32) {
     let enabled = enabled > 0.5;
     apply_control_action(class, ControlAction::SetDelayRangeSwitch(enabled));
+}
+
+unsafe extern "C" fn set_delay_rewind_forward(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayRewindForwardSwitch(enabled));
+}
+
+unsafe extern "C" fn set_delay_rewind_backward(class: *mut Class, enabled: f32) {
+    let enabled = enabled > 0.5;
+    apply_control_action(class, ControlAction::SetDelayRewindBackwardSwitch(enabled));
 }
 
 unsafe extern "C" fn set_delay_quantization_6(class: *mut Class, enabled: f32) {
