@@ -3136,8 +3136,8 @@ RANGE 33 7 0 10 #fcfcfc #000000 #000000 0;
 QUANT6 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 112 277 hradio 15 1 0 2 \$0-kaseta-delay-quantization-8-s \$0-kaseta-delay-quantization-8-r
 QUANT8 33 7 0 10 #fcfcfc #000000 #000000 0;
-#X obj 112 337 hradio 15 1 0 2 empty\$0-kaseta-rewind-forward-s \$0-kaseta-rewind-forward-r
-REWIND-> 33 7 0 10 #fcfcfc #000000 #000000 0;
+#X obj 112 337 hradio 15 1 0 2 \$0-kaseta-rewind-forward-s \$0-kaseta-rewind-forward-r
+REWIND<- 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 112 292 hradio 15 1 0 2 empty empty SYNC\\\ W/F 33 7 0 10 #fcfcfc
 #000000 #000000 0;
 #X obj 112 307 hradio 15 1 0 2 empty empty CYCLE\\\ W/F 33 7 0 10 #fcfcfc
@@ -3145,7 +3145,7 @@ REWIND-> 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 112 322 hradio 15 1 0 2 empty empty CRACKLING 33 7 0 10 #fcfcfc
 #000000 #000000 0;
 #X obj 112 352 hradio 15 1 0 2 \$0-kaseta-rewind-backward-s \$0-kaseta-rewind-backward-r
-REWIND<- 33 7 0 10 #fcfcfc #000000 #000000 0;
+REWIND-> 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 110 160 hsl 128 15 0 127 0 1 \$0-kaseta-dry-wet-s \$0-kaseta-dry-wet-r
 DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5200 1;
 #X obj 597 917 / 127;
