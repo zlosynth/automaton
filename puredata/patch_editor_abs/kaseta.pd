@@ -2825,14 +2825,14 @@ WOW_PHS_SPRING WOW_PHS_FILTER WOW_PHS_DRIFT, f 198;
 #X obj 154 128 cnv 5 5 5 empty \$0-instance-num 2 0 0 0 12 #fcfcfc
 #404040 0;
 #X obj 110 145 hsl 128 15 1.27 127 1 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
-PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 7200 1;
+PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 8200 1;
 #X obj 110 175 hsl 128 15 0 127 0 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
 DRIVE 133 7 0 10 #fcfcfc #000000 #000000 7600 1;
 #X obj 110 190 hsl 128 15 0 127 0 1 \$0-kaseta-bias-s \$0-kaseta-bias-r
 BIAS 133 7 0 10 #fcfcfc #000000 #000000 900 1;
 #X obj 94 836 r~ \$0-kaseta-out;
 #X obj 94 858 outlet~ OUT;
-#X obj 1787 1387 s~ \$0-kaseta-out;
+#X obj 1777 1447 s~ \$0-kaseta-out;
 #X obj 1786 997 kaseta~, f 34;
 #X obj 840 108 inlet~ IN;
 #X obj 1773 131 r~ \$0-kaseta-in;
@@ -2904,13 +2904,13 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
 0 1;
 #X obj 542 179 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-position-s
 \$0-kaseta-delay-head-2-position-r H2 133 7 0 10 #fcfcfc #000000 #000000
-3500 1;
+0 1;
 #X obj 542 194 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-3-position-s
 \$0-kaseta-delay-head-3-position-r H3 133 7 0 10 #fcfcfc #000000 #000000
-8700 1;
+0 1;
 #X obj 542 209 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-4-position-s
 \$0-kaseta-delay-head-4-position-r H4 133 7 0 10 #fcfcfc #000000 #000000
-12700 1;
+0 1;
 #X obj 785 969 / 127;
 #X obj 785 946 r \$0-kaseta-delay-length-s;
 #X obj 785 991 s \$0-kaseta-delay-length-pot;
@@ -3032,13 +3032,13 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
 12700 1;
 #X obj 542 244 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-volume-s
 \$0-kaseta-delay-head-2-volume-r H2 133 7 0 10 #fcfcfc #000000 #000000
-0 1;
+12700 1;
 #X obj 542 259 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-3-volume-s
 \$0-kaseta-delay-head-3-volume-r H3 133 7 0 10 #fcfcfc #000000 #000000
-0 1;
+12700 1;
 #X obj 542 274 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-4-volume-s
 \$0-kaseta-delay-head-4-volume-r H4 133 7 0 10 #fcfcfc #000000 #000000
-0 1;
+12700 1;
 #X text 693 234 V;
 #X text 693 249 O;
 #X text 693 264 L;
@@ -3147,7 +3147,7 @@ REWIND<- 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 112 352 hradio 15 1 0 2 \$0-kaseta-rewind-backward-s \$0-kaseta-rewind-backward-r
 REWIND-> 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 110 160 hsl 128 15 0 127 0 1 \$0-kaseta-dry-wet-s \$0-kaseta-dry-wet-r
-DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5200 1;
+DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 597 917 / 127;
 #X obj 597 894 r \$0-kaseta-dry-wet-s;
 #X obj 597 939 s \$0-kaseta-dry-wet-pot;
@@ -3170,24 +3170,24 @@ DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5200 1;
 #X obj 272 354 tgl 15 0 \$0-kaseta-led-8-s \$0-kaseta-led-8-r empty
 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X text 239 318 DISPLAY;
-#X obj 1811 1362 s \$0-kaseta-led-1-r;
-#X obj 1811 1341 snapshot~;
+#X obj 1801 1422 s \$0-kaseta-led-1-r;
+#X obj 1801 1401 snapshot~;
 #X obj 1731 998 loadbang;
 #X obj 1731 1019 metro;
-#X obj 1835 1296 snapshot~;
-#X obj 1835 1317 s \$0-kaseta-led-2-r;
-#X obj 1860 1249 snapshot~;
-#X obj 1886 1204 snapshot~;
-#X obj 1912 1162 snapshot~;
-#X obj 1937 1117 snapshot~;
-#X obj 1961 1070 snapshot~;
-#X obj 1986 1025 snapshot~;
-#X obj 1860 1270 s \$0-kaseta-led-3-r;
-#X obj 1886 1225 s \$0-kaseta-led-4-r;
-#X obj 1912 1183 s \$0-kaseta-led-5-r;
-#X obj 1937 1138 s \$0-kaseta-led-6-r;
-#X obj 1961 1091 s \$0-kaseta-led-7-r;
-#X obj 1986 1045 s \$0-kaseta-led-8-r;
+#X obj 1825 1356 snapshot~;
+#X obj 1825 1377 s \$0-kaseta-led-2-r;
+#X obj 1850 1309 snapshot~;
+#X obj 1876 1264 snapshot~;
+#X obj 1902 1222 snapshot~;
+#X obj 1927 1177 snapshot~;
+#X obj 1951 1130 snapshot~;
+#X obj 1976 1085 snapshot~;
+#X obj 1850 1330 s \$0-kaseta-led-3-r;
+#X obj 1876 1285 s \$0-kaseta-led-4-r;
+#X obj 1902 1243 s \$0-kaseta-led-5-r;
+#X obj 1927 1198 s \$0-kaseta-led-6-r;
+#X obj 1951 1151 s \$0-kaseta-led-7-r;
+#X obj 1976 1105 s \$0-kaseta-led-8-r;
 #X obj 1033 1122 r \$0-kaseta-range-s;
 #X obj 1033 1143 s \$0-kaseta-range-switch;
 #X obj 2126 627 r \$0-kaseta-range-switch;
@@ -3200,6 +3200,13 @@ DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5200 1;
 #X msg 2140 704 delay_rewind_forward \$1;
 #X obj 2147 732 r \$0-kaseta-rewind-backward-switch;
 #X msg 2148 757 delay_rewind_backward \$1;
+#X obj 1989 1040 snapshot~;
+#X obj 1989 1060 s \$0-kaseta-impulse-r;
+#X obj 309 339 tgl 30 0 \$0-kaseta-impulse-s \$0-kaseta-impulse-r empty
+17 7 0 10 #fcfcfc #000000 #000000 0 1;
+#X obj 95 913 outlet~ IMPULSE;
+#X obj 95 891 r~ \$0-kaseta-impulse;
+#X obj 2123 1060 s~ \$0-kaseta-impulse;
 #X connect 1 0 3 0;
 #X connect 3 0 4 0;
 #X connect 4 0 2 0;
@@ -3214,6 +3221,8 @@ DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5200 1;
 #X connect 20 6 301 0;
 #X connect 20 7 302 0;
 #X connect 20 8 303 0;
+#X connect 20 9 322 0;
+#X connect 20 9 327 0;
 #X connect 21 0 38 0;
 #X connect 22 0 20 0;
 #X connect 23 0 51 0;
@@ -3385,6 +3394,7 @@ DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5200 1;
 #X connect 295 0 300 0;
 #X connect 295 0 299 0;
 #X connect 295 0 298 0;
+#X connect 295 0 322 0;
 #X connect 296 0 297 0;
 #X connect 298 0 304 0;
 #X connect 299 0 305 0;
@@ -3401,4 +3411,6 @@ DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 5200 1;
 #X connect 319 0 20 0;
 #X connect 320 0 321 0;
 #X connect 321 0 20 0;
+#X connect 322 0 323 0;
+#X connect 326 0 325 0;
 #X coords 0 -1 1 1 630 300 2 100 100;

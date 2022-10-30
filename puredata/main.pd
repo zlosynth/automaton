@@ -890,7 +890,7 @@
 #X msg 177 62 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 418 s SAVE-S;
@@ -6749,8 +6749,10 @@ and send to the name of the module \, for example [s basic-osc];
 #X obj 514 630 *~ 0.8;
 #X obj 1318 493 clip~ -2 2;
 #X obj 1345 436 *~;
+#X obj 1243 539 percussion 3;
 #X connect 11 0 23 0;
 #X connect 11 0 24 0;
+#X connect 11 1 27 0;
 #X connect 14 0 21 0;
 #X connect 14 1 21 0;
 #X connect 15 0 26 0;
@@ -6766,3 +6768,4 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 24 0 12 0;
 #X connect 25 0 11 0;
 #X connect 26 0 25 0;
+#X connect 27 0 12 4;

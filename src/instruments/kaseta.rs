@@ -13,7 +13,7 @@ use crate::{cstr, log};
 static mut CLASS: Option<*mut pd_sys::_class> = None;
 lazy_static! {
     static ref MEMORY_MANAGER: Mutex<MemoryManager> = {
-        static mut MEMORY: [MaybeUninit<u32>; 48000 * 4 * 60] =
+        static mut MEMORY: [MaybeUninit<u32>; 48000 * 4 * 60 * 3] =
             unsafe { MaybeUninit::uninit().assume_init() };
         let memory_manager = MemoryManager::from(unsafe { &mut MEMORY[..] });
         Mutex::new(memory_manager)
@@ -40,6 +40,7 @@ struct Class {
     led_6_outlet: *mut pd_sys::_outlet,
     led_7_outlet: *mut pd_sys::_outlet,
     led_8_outlet: *mut pd_sys::_outlet,
+    impulse_outlet: *mut pd_sys::_outlet,
     cache: Cache,
     processor: Processor,
     signal_dummy: f32,
@@ -56,7 +57,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         receiver = Class,
         dummy_offset = offset_of!(Class => signal_dummy),
         number_of_inlets = 1,
-        number_of_outlets = 9,
+        number_of_outlets = 10,
         callback = perform
     );
 
@@ -186,6 +187,7 @@ unsafe extern "C" fn new() -> *mut c_void {
     (*class).led_6_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).led_7_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).led_8_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).impulse_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
 
     class as *mut c_void
 }
@@ -404,6 +406,7 @@ fn perform(
             outlets[6][index] = if reaction.leds[5] { 1.0 } else { 0.0 };
             outlets[7][index] = if reaction.leds[6] { 1.0 } else { 0.0 };
             outlets[8][index] = if reaction.leds[7] { 1.0 } else { 0.0 };
+            outlets[9][index] = if reaction.impulse { 1.0 } else { 0.0 };
         }
     }
 }
