@@ -391,19 +391,19 @@ fn perform(
         }
 
         let reaction = class.processor.process(&mut buffer, &mut KasetaRandom);
-        let leds = control::reduce_dsp_reaction(reaction, &mut (*class).cache);
+        let reaction = control::reduce_dsp_reaction(reaction, &mut (*class).cache);
 
         for (i, frame) in buffer.iter().enumerate() {
             let index = chunk_index * BUFFER_LEN + i;
             outlets[0][index] = *frame;
-            outlets[1][index] = if leds[0] { 1.0 } else { 0.0 };
-            outlets[2][index] = if leds[1] { 1.0 } else { 0.0 };
-            outlets[3][index] = if leds[2] { 1.0 } else { 0.0 };
-            outlets[4][index] = if leds[3] { 1.0 } else { 0.0 };
-            outlets[5][index] = if leds[4] { 1.0 } else { 0.0 };
-            outlets[6][index] = if leds[5] { 1.0 } else { 0.0 };
-            outlets[7][index] = if leds[6] { 1.0 } else { 0.0 };
-            outlets[8][index] = if leds[7] { 1.0 } else { 0.0 };
+            outlets[1][index] = if reaction.leds[0] { 1.0 } else { 0.0 };
+            outlets[2][index] = if reaction.leds[1] { 1.0 } else { 0.0 };
+            outlets[3][index] = if reaction.leds[2] { 1.0 } else { 0.0 };
+            outlets[4][index] = if reaction.leds[3] { 1.0 } else { 0.0 };
+            outlets[5][index] = if reaction.leds[4] { 1.0 } else { 0.0 };
+            outlets[6][index] = if reaction.leds[5] { 1.0 } else { 0.0 };
+            outlets[7][index] = if reaction.leds[6] { 1.0 } else { 0.0 };
+            outlets[8][index] = if reaction.leds[7] { 1.0 } else { 0.0 };
         }
     }
 }
