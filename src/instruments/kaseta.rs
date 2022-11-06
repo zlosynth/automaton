@@ -67,16 +67,8 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "drive_cv", set_drive_cv);
     register_float_method(class, "bias_pot", set_bias_pot);
     register_float_method(class, "bias_cv", set_bias_cv);
-    register_float_method(class, "wow_frequency_pot", set_wow_frequency_pot);
-    register_float_method(class, "wow_frequency_cv", set_wow_frequency_cv);
     register_float_method(class, "wow_depth_pot", set_wow_depth_pot);
     register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
-    register_float_method(class, "wow_amp_noise", set_wow_amplitude_noise_pot);
-    register_float_method(class, "wow_amp_spring", set_wow_amplitude_spring_pot);
-    register_float_method(class, "wow_amp_filter", set_wow_filter_pot);
-    register_float_method(class, "wow_phs_noise", set_wow_phase_noise_pot);
-    register_float_method(class, "wow_phs_spring", set_wow_phase_spring_pot);
-    register_float_method(class, "wow_phs_drift", set_wow_phase_drift_pot);
     register_float_method(class, "delay_length_pot", set_delay_length_pot);
     register_float_method(class, "delay_length_cv", set_delay_length_cv);
     register_float_method(
@@ -148,6 +140,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "delay_head_2_volume", set_delay_head_2_volume);
     register_float_method(class, "delay_head_3_volume", set_delay_head_3_volume);
     register_float_method(class, "delay_head_4_volume", set_delay_head_4_volume);
+    register_float_method(class, "tone", set_tone);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -233,44 +226,12 @@ unsafe extern "C" fn set_bias_cv(class: *mut Class, bias: f32) {
     apply_control_action(class, ControlAction::SetBiasCV(bias));
 }
 
-unsafe extern "C" fn set_wow_frequency_pot(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetWowFrequencyPot(bias));
-}
-
-unsafe extern "C" fn set_wow_frequency_cv(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetWowFrequencyCV(bias));
-}
-
 unsafe extern "C" fn set_wow_depth_pot(class: *mut Class, bias: f32) {
     apply_control_action(class, ControlAction::SetWowDepthPot(bias));
 }
 
 unsafe extern "C" fn set_wow_depth_cv(class: *mut Class, bias: f32) {
     apply_control_action(class, ControlAction::SetWowDepthCV(bias));
-}
-
-unsafe extern "C" fn set_wow_amplitude_noise_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetWowAmplitudeNoisePot(value));
-}
-
-unsafe extern "C" fn set_wow_amplitude_spring_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetWowAmplitudeSpringPot(value));
-}
-
-unsafe extern "C" fn set_wow_filter_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetWowFilterPot(value));
-}
-
-unsafe extern "C" fn set_wow_phase_noise_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetWowPhaseNoisePot(value));
-}
-
-unsafe extern "C" fn set_wow_phase_spring_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetWowPhaseSpringPot(value));
-}
-
-unsafe extern "C" fn set_wow_phase_drift_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetWowPhaseDriftPot(value));
 }
 
 unsafe extern "C" fn set_delay_length_cv(class: *mut Class, bias: f32) {
@@ -368,6 +329,10 @@ unsafe extern "C" fn set_delay_head_3_volume(class: *mut Class, value: f32) {
 
 unsafe extern "C" fn set_delay_head_4_volume(class: *mut Class, value: f32) {
     apply_control_action(class, ControlAction::SetDelayHeadVolume(3, value));
+}
+
+unsafe extern "C" fn set_tone(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetTone(value));
 }
 
 unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
