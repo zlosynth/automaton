@@ -227,11 +227,11 @@ unsafe extern "C" fn set_bias_cv(class: *mut Class, bias: f32) {
 }
 
 unsafe extern "C" fn set_wow_depth_pot(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetWowDepthPot(bias));
+    apply_control_action(class, ControlAction::SetWowFlutterDepthPot(bias));
 }
 
 unsafe extern "C" fn set_wow_depth_cv(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetWowDepthCV(bias));
+    apply_control_action(class, ControlAction::SetWowFlutterDepthCV(bias));
 }
 
 unsafe extern "C" fn set_delay_length_cv(class: *mut Class, bias: f32) {

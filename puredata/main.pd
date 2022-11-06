@@ -6735,7 +6735,7 @@ and send to the name of the module \, for example [s basic-osc];
 #X obj 915 639 scope 6;
 #X obj 857 39 external-audio 2;
 #X obj 1331 109 achordion 4;
-#X obj 1477 403 hsl 128 15 0 120 0 0 empty empty empty -2 -8 0 10 #fcfcfc
+#X obj 1480 403 hsl 128 15 0 120 0 0 empty empty empty -2 -8 0 10 #fcfcfc
 #000000 #000000 0 1;
 #X floatatom 1473 430 5 0 0 0 - - - 0;
 #X obj 857 611 hsl 128 15 0 10 0 1 empty empty empty -2 -8 0 10 #fcfcfc

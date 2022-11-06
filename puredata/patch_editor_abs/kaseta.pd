@@ -1,7 +1,7 @@
 #N canvas 0 45 1916 1001 10;
 #X obj 105 387 cnv 5 5 5 empty empty OUT 0 0 0 8 #fcfcfc #404040 0
 ;
-#N canvas 0 45 1916 1001 state-saving-multiple-instances 1;
+#N canvas 0 45 1916 1001 state-saving-multiple-instances 0;
 #X obj 1066 31 loadbang;
 #X obj 1044 291 textfile;
 #X msg 1326 274 rewind;
@@ -2207,11 +2207,11 @@ WOW_PHS_SPRING WOW_PHS_FILTER WOW_PHS_DRIFT TONE, f 198;
 #X obj 154 128 cnv 5 5 5 empty \$0-instance-num 2 0 0 0 12 #fcfcfc
 #404040 0;
 #X obj 110 145 hsl 128 15 1.27 127 1 1 \$0-kaseta-pre-amp-s \$0-kaseta-pre-amp-r
-PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 7700 1;
+PRE-AMP 133 7 0 10 #fcfcfc #000000 #000000 15800 1;
 #X obj 110 175 hsl 128 15 0 127 0 1 \$0-kaseta-drive-s \$0-kaseta-drive-r
-DRIVE 133 7 0 10 #fcfcfc #000000 #000000 11400 1;
+DRIVE 133 7 0 10 #fcfcfc #000000 #000000 16200 1;
 #X obj 110 190 hsl 128 15 0 127 0 1 \$0-kaseta-bias-s \$0-kaseta-bias-r
-BIAS 133 7 0 10 #fcfcfc #000000 #000000 4000 1;
+BIAS 133 7 0 10 #fcfcfc #000000 #000000 3800 1;
 #X obj 94 836 r~ \$0-kaseta-out;
 #X obj 94 858 outlet~ OUT;
 #X obj 1777 1447 s~ \$0-kaseta-out;
@@ -2252,7 +2252,7 @@ BIAS 133 7 0 10 #fcfcfc #000000 #000000 4000 1;
 #X obj 1874 606 r \$0-kaseta-wow-depth-cv;
 #X msg 1874 630 wow_depth_cv \$1;
 #X obj 330 144 hsl 128 15 0 127 0 1 \$0-kaseta-wow-depth-s \$0-kaseta-wow-depth-r
-DEPTH 133 7 0 10 #fcfcfc #000000 #000000 4600 1;
+DEPTH 133 7 0 10 #fcfcfc #000000 #000000 13400 1;
 #X obj 785 899 / 127;
 #X obj 785 876 r \$0-kaseta-wow-depth-s;
 #X obj 785 921 s \$0-kaseta-wow-depth-pot;
@@ -2271,19 +2271,19 @@ DEPTH 133 7 0 10 #fcfcfc #000000 #000000 4600 1;
 #X obj 397 109 cnv 5 5 5 empty empty WOW\\\ D. 0 0 0 8 #fcfcfc #7474a4
 0;
 #X obj 542 145 hsl 128 15 0 127 0 1 \$0-kaseta-delay-length-s \$0-kaseta-delay-length-r
-DELAY 133 7 0 10 #fcfcfc #000000 #000000 500 1;
+DELAY 133 7 0 10 #fcfcfc #000000 #000000 13000 1;
 #X obj 542 184 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-1-position-s
 \$0-kaseta-delay-head-1-position-r H1 133 7 0 10 #fcfcfc #000000 #000000
 0 1;
 #X obj 542 199 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-position-s
 \$0-kaseta-delay-head-2-position-r H2 133 7 0 10 #fcfcfc #000000 #000000
-3500 1;
+1400 1;
 #X obj 542 214 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-3-position-s
 \$0-kaseta-delay-head-3-position-r H3 133 7 0 10 #fcfcfc #000000 #000000
-4300 1;
+5200 1;
 #X obj 542 229 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-4-position-s
 \$0-kaseta-delay-head-4-position-r H4 133 7 0 10 #fcfcfc #000000 #000000
-9800 1;
+1600 1;
 #X obj 785 969 / 127;
 #X obj 785 946 r \$0-kaseta-delay-length-s;
 #X obj 785 991 s \$0-kaseta-delay-length-pot;
@@ -2402,7 +2402,7 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 500 1;
 #X msg 2114 597 delay_head_4_feedback_amp \$1;
 #X obj 542 249 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-1-volume-s
 \$0-kaseta-delay-head-1-volume-r H1 133 7 0 10 #fcfcfc #000000 #000000
-12700 1;
+10600 1;
 #X obj 542 264 hsl 128 15 0 127 0 1 \$0-kaseta-delay-head-2-volume-s
 \$0-kaseta-delay-head-2-volume-r H2 133 7 0 10 #fcfcfc #000000 #000000
 0 1;
@@ -2435,7 +2435,6 @@ DELAY 133 7 0 10 #fcfcfc #000000 #000000 500 1;
 #X msg 2320 250 delay_head_3_volume \$1;
 #X obj 2329 275 r \$0-kaseta-delay-head-4-volume-pot;
 #X msg 2329 300 delay_head_4_volume \$1;
-#X text 437 124 WOW;
 #X text 638 126 DELAY;
 #X text 175 124 HYSTERESIS;
 #X obj 1189 66 cnv 5 20 20 empty empty INPUT\\\ BINDINGS 0 0 0 20 #ffffff
@@ -2472,7 +2471,7 @@ REWIND<- 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 112 352 hradio 15 1 0 2 \$0-kaseta-rewind-backward-s \$0-kaseta-rewind-backward-r
 REWIND-> 33 7 0 10 #fcfcfc #000000 #000000 0;
 #X obj 110 160 hsl 128 15 0 127 0 1 \$0-kaseta-dry-wet-s \$0-kaseta-dry-wet-r
-DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
+DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 25400 1;
 #X obj 597 917 / 127;
 #X obj 597 894 r \$0-kaseta-dry-wet-s;
 #X obj 597 939 s \$0-kaseta-dry-wet-pot;
@@ -2533,28 +2532,30 @@ DRY/WET 133 7 0 10 #fcfcfc #000000 #000000 12700 1;
 #X obj 95 891 r~ \$0-kaseta-impulse;
 #X obj 2123 1060 s~ \$0-kaseta-impulse;
 #X obj 542 165 hsl 128 15 0 127 0 1 \$0-kaseta-tone-s \$0-kaseta-tone-r
-TONE 133 7 0 10 #fcfcfc #000000 #000000 6400 1;
+TONE 133 7 0 10 #fcfcfc #000000 #000000 21000 1;
 #X msg 2396 632 tone \$1;
 #X obj 2396 607 r \$0-kaseta-tone-pot;
 #X obj 597 1138 / 127;
 #X obj 597 1115 r \$0-kaseta-tone-s;
 #X obj 597 1160 s \$0-kaseta-tone-pot;
+#X text 390 124 WOW/FLUTTER;
+#X text 392 162 ^;
 #X connect 1 0 3 0;
 #X connect 3 0 4 0;
 #X connect 4 0 2 0;
 #X connect 8 0 25 0;
 #X connect 17 0 18 0;
 #X connect 20 0 19 0;
-#X connect 20 1 243 0;
-#X connect 20 2 246 0;
-#X connect 20 3 248 0;
-#X connect 20 4 249 0;
-#X connect 20 5 250 0;
-#X connect 20 6 251 0;
-#X connect 20 7 252 0;
-#X connect 20 8 253 0;
-#X connect 20 9 272 0;
-#X connect 20 9 277 0;
+#X connect 20 1 242 0;
+#X connect 20 2 245 0;
+#X connect 20 3 247 0;
+#X connect 20 4 248 0;
+#X connect 20 5 249 0;
+#X connect 20 6 250 0;
+#X connect 20 7 251 0;
+#X connect 20 8 252 0;
+#X connect 20 9 271 0;
+#X connect 20 9 276 0;
 #X connect 21 0 38 0;
 #X connect 22 0 20 0;
 #X connect 23 0 51 0;
@@ -2682,41 +2683,41 @@ TONE 133 7 0 10 #fcfcfc #000000 #000000 6400 1;
 #X connect 204 0 20 0;
 #X connect 205 0 206 0;
 #X connect 206 0 20 0;
-#X connect 228 0 230 0;
-#X connect 229 0 228 0;
-#X connect 231 0 232 0;
-#X connect 232 0 20 0;
-#X connect 243 0 242 0;
+#X connect 227 0 229 0;
+#X connect 228 0 227 0;
+#X connect 230 0 231 0;
+#X connect 231 0 20 0;
+#X connect 242 0 241 0;
+#X connect 243 0 244 0;
+#X connect 244 0 242 0;
 #X connect 244 0 245 0;
-#X connect 245 0 243 0;
+#X connect 244 0 252 0;
+#X connect 244 0 251 0;
+#X connect 244 0 250 0;
+#X connect 244 0 249 0;
+#X connect 244 0 248 0;
+#X connect 244 0 247 0;
+#X connect 244 0 271 0;
 #X connect 245 0 246 0;
-#X connect 245 0 253 0;
-#X connect 245 0 252 0;
-#X connect 245 0 251 0;
-#X connect 245 0 250 0;
-#X connect 245 0 249 0;
-#X connect 245 0 248 0;
-#X connect 245 0 272 0;
-#X connect 246 0 247 0;
+#X connect 247 0 253 0;
 #X connect 248 0 254 0;
 #X connect 249 0 255 0;
 #X connect 250 0 256 0;
 #X connect 251 0 257 0;
 #X connect 252 0 258 0;
-#X connect 253 0 259 0;
-#X connect 260 0 261 0;
-#X connect 262 0 263 0;
-#X connect 263 0 20 0;
-#X connect 264 0 265 0;
-#X connect 266 0 267 0;
-#X connect 268 0 269 0;
-#X connect 269 0 20 0;
-#X connect 270 0 271 0;
-#X connect 271 0 20 0;
-#X connect 272 0 273 0;
-#X connect 276 0 275 0;
-#X connect 279 0 20 0;
-#X connect 280 0 279 0;
-#X connect 281 0 283 0;
-#X connect 282 0 281 0;
+#X connect 259 0 260 0;
+#X connect 261 0 262 0;
+#X connect 262 0 20 0;
+#X connect 263 0 264 0;
+#X connect 265 0 266 0;
+#X connect 267 0 268 0;
+#X connect 268 0 20 0;
+#X connect 269 0 270 0;
+#X connect 270 0 20 0;
+#X connect 271 0 272 0;
+#X connect 275 0 274 0;
+#X connect 278 0 20 0;
+#X connect 279 0 278 0;
+#X connect 280 0 282 0;
+#X connect 281 0 280 0;
 #X coords 0 -1 1 1 630 300 2 100 100;
