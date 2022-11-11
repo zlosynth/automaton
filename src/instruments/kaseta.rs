@@ -32,6 +32,7 @@ impl Random for KasetaRandom {
 #[repr(C)]
 struct Class {
     pd_obj: pd_sys::t_object,
+    right_outlet: *mut pd_sys::_outlet,
     led_1_outlet: *mut pd_sys::_outlet,
     led_2_outlet: *mut pd_sys::_outlet,
     led_3_outlet: *mut pd_sys::_outlet,
@@ -57,7 +58,7 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         receiver = Class,
         dummy_offset = offset_of!(Class => signal_dummy),
         number_of_inlets = 1,
-        number_of_outlets = 10,
+        number_of_outlets = 11,
         callback = perform
     );
 
@@ -140,6 +141,10 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "delay_head_2_volume", set_delay_head_2_volume);
     register_float_method(class, "delay_head_3_volume", set_delay_head_3_volume);
     register_float_method(class, "delay_head_4_volume", set_delay_head_4_volume);
+    register_float_method(class, "delay_head_1_pan", set_delay_head_1_pan);
+    register_float_method(class, "delay_head_2_pan", set_delay_head_2_pan);
+    register_float_method(class, "delay_head_3_pan", set_delay_head_3_pan);
+    register_float_method(class, "delay_head_4_pan", set_delay_head_4_pan);
     register_float_method(class, "tone", set_tone);
 }
 
@@ -172,6 +177,7 @@ unsafe extern "C" fn new() -> *mut c_void {
     (*class).processor = processor;
 
     pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).right_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).led_1_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).led_2_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).led_3_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
@@ -331,6 +337,22 @@ unsafe extern "C" fn set_delay_head_4_volume(class: *mut Class, value: f32) {
     apply_control_action(class, ControlAction::SetDelayHeadVolume(3, value));
 }
 
+unsafe extern "C" fn set_delay_head_1_pan(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPan(0, value));
+}
+
+unsafe extern "C" fn set_delay_head_2_pan(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPan(1, value));
+}
+
+unsafe extern "C" fn set_delay_head_3_pan(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPan(2, value));
+}
+
+unsafe extern "C" fn set_delay_head_4_pan(class: *mut Class, value: f32) {
+    apply_control_action(class, ControlAction::SetDelayHeadPan(3, value));
+}
+
 unsafe extern "C" fn set_tone(class: *mut Class, value: f32) {
     apply_control_action(class, ControlAction::SetTone(value));
 }
@@ -349,12 +371,12 @@ fn perform(
     const BUFFER_LEN: usize = 32;
     assert!(number_of_frames % BUFFER_LEN == 0);
 
-    let mut buffer = [0.0; BUFFER_LEN];
+    let mut buffer = [(0.0, 0.0); BUFFER_LEN];
 
     for chunk_index in 0..number_of_frames / BUFFER_LEN {
         for (i, frame) in buffer.iter_mut().enumerate() {
             let index = chunk_index * BUFFER_LEN + i;
-            *frame = inlets[0][index];
+            *frame = (inlets[0][index], 0.0);
         }
 
         let reaction = class.processor.process(&mut buffer, &mut KasetaRandom);
@@ -362,16 +384,16 @@ fn perform(
 
         for (i, frame) in buffer.iter().enumerate() {
             let index = chunk_index * BUFFER_LEN + i;
-            outlets[0][index] = *frame;
-            outlets[1][index] = if reaction.leds[0] { 1.0 } else { 0.0 };
-            outlets[2][index] = if reaction.leds[1] { 1.0 } else { 0.0 };
-            outlets[3][index] = if reaction.leds[2] { 1.0 } else { 0.0 };
-            outlets[4][index] = if reaction.leds[3] { 1.0 } else { 0.0 };
-            outlets[5][index] = if reaction.leds[4] { 1.0 } else { 0.0 };
-            outlets[6][index] = if reaction.leds[5] { 1.0 } else { 0.0 };
-            outlets[7][index] = if reaction.leds[6] { 1.0 } else { 0.0 };
-            outlets[8][index] = if reaction.leds[7] { 1.0 } else { 0.0 };
-            outlets[9][index] = if reaction.impulse { 1.0 } else { 0.0 };
+            (outlets[0][index], outlets[1][index]) = *frame;
+            outlets[2][index] = if reaction.leds[0] { 1.0 } else { 0.0 };
+            outlets[3][index] = if reaction.leds[1] { 1.0 } else { 0.0 };
+            outlets[4][index] = if reaction.leds[2] { 1.0 } else { 0.0 };
+            outlets[5][index] = if reaction.leds[3] { 1.0 } else { 0.0 };
+            outlets[6][index] = if reaction.leds[4] { 1.0 } else { 0.0 };
+            outlets[7][index] = if reaction.leds[5] { 1.0 } else { 0.0 };
+            outlets[8][index] = if reaction.leds[6] { 1.0 } else { 0.0 };
+            outlets[9][index] = if reaction.leds[7] { 1.0 } else { 0.0 };
+            outlets[10][index] = if reaction.impulse { 1.0 } else { 0.0 };
         }
     }
 }

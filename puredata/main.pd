@@ -5178,7 +5178,7 @@ more elaborate pd-code for deeper control.;
 #X obj 204 151 r open-organelle-map!;
 #X msg 204 198 \; pd-organelle-map vis \$1;
 #X obj 203 272 r open-modules!;
-#N canvas 0 45 1916 1001 modules 0;
+#N canvas 0 45 476 1001 modules 0;
 #X obj 196 91 cnv 15 180 15 empty empty MODULATION: 10 8 0 12 #9898dc
 #fcfcfc 0;
 #X obj 196 112 bng 15 250 50 0 \$0-create-basic-lfo! empty <--BASIC-LFO
@@ -6748,8 +6748,8 @@ and send to the name of the module \, for example [s basic-osc];
 #X obj 780 624 *~;
 #X obj 1318 493 clip~ -2 2;
 #X obj 1345 436 *~;
-#X connect 11 0 23 0;
 #X connect 11 0 12 0;
+#X connect 11 1 12 2;
 #X connect 14 0 21 0;
 #X connect 14 1 21 0;
 #X connect 15 0 25 0;
@@ -6760,7 +6760,6 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 19 0 21 1;
 #X connect 21 0 22 0;
 #X connect 22 0 11 0;
-#X connect 22 0 12 2;
 #X connect 23 0 13 0;
 #X connect 24 0 11 0;
 #X connect 24 0 12 6;
