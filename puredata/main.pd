@@ -2786,7 +2786,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2948,7 +2948,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 3 256;
+#fcfcfc #000000 #000000 5 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4193,7 +4193,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 5 256;
+#fcfcfc #000000 #000000 6 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6732,13 +6732,13 @@ and send to the name of the module \, for example [s basic-osc];
 7 0 10 #fcfcfc #000000 #000000;
 #X obj 516 261 kaseta 2;
 #X obj 579 702 maestro4 2;
-#X obj 915 639 scope 6;
+#X obj 940 680 scope 6;
 #X obj 857 39 external-audio 2;
 #X obj 1331 109 achordion 4;
 #X obj 1480 403 hsl 128 15 0 120 0 0 empty empty empty -2 -8 0 10 #fcfcfc
 #000000 #000000 0 1;
 #X floatatom 1473 430 5 0 0 0 - - - 0;
-#X obj 857 611 hsl 128 15 0 10 0 1 empty empty empty -2 -8 0 10 #fcfcfc
+#X obj 882 652 hsl 128 15 0 10 0 1 empty empty empty -2 -8 0 10 #fcfcfc
 #000000 #000000 6100 1;
 #X obj 548 19 hsl 128 15 0 2 0 1 empty empty empty -2 -8 0 10 #fcfcfc
 #000000 #000000 4200 1;
@@ -6748,6 +6748,11 @@ and send to the name of the module \, for example [s basic-osc];
 #X obj 780 624 *~;
 #X obj 1318 493 clip~ -2 2;
 #X obj 1345 436 *~;
+#X obj 222 57 basic-lfo 2;
+#X obj 239 520 basic-lfo 2;
+#X obj 123 374 basic-lfo 2;
+#X obj 1669 218 random-voltages 5;
+#X obj 1678 98 clock 6;
 #X connect 11 0 12 0;
 #X connect 11 1 12 2;
 #X connect 14 0 21 0;
@@ -6764,3 +6769,8 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 24 0 11 0;
 #X connect 24 0 12 6;
 #X connect 25 0 24 0;
+#X connect 26 0 11 1;
+#X connect 27 0 11 2;
+#X connect 28 0 27 0;
+#X connect 29 0 15 0;
+#X connect 30 0 29 0;

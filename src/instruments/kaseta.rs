@@ -47,6 +47,7 @@ struct Class {
     led_9_outlet: *mut pd_sys::_outlet,
     impulse_outlet: *mut pd_sys::_outlet,
     input: InputSnapshot,
+    control_connected: [bool; 4],
     output: DesiredOutput,
     cache: Cache,
     processor: Processor,
@@ -69,6 +70,15 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     );
 
     register_bang_method(class, tick);
+    register_float_method(class, "control_1_connected", set_control_1_connected);
+    register_float_method(class, "control_2_connected", set_control_2_connected);
+    register_float_method(class, "control_3_connected", set_control_3_connected);
+    register_float_method(class, "control_4_connected", set_control_4_connected);
+    register_float_method(class, "control_1", set_control_1);
+    register_float_method(class, "control_2", set_control_2);
+    register_float_method(class, "control_3", set_control_3);
+    register_float_method(class, "control_4", set_control_4);
+    register_float_method(class, "button", set_button);
     register_float_method(class, "pre_amp", set_pre_amp);
     register_float_method(class, "dry_wet", set_dry_wet);
     register_float_method(class, "drive", set_drive);
@@ -92,16 +102,16 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
     register_float_method(class, "head_2_pan", set_head_2_pan);
     register_float_method(class, "head_3_pan", set_head_3_pan);
     register_float_method(class, "head_4_pan", set_head_4_pan);
-    register_float_method(class, "option_1", set_option_1);
-    register_float_method(class, "option_2", set_option_2);
-    register_float_method(class, "option_3", set_option_3);
-    register_float_method(class, "option_4", set_option_4);
-    register_float_method(class, "option_5", set_option_5);
-    register_float_method(class, "option_6", set_option_6);
-    register_float_method(class, "option_7", set_option_7);
-    register_float_method(class, "option_8", set_option_8);
-    register_float_method(class, "option_9", set_option_9);
-    register_float_method(class, "option_10", set_option_10);
+    register_float_method(class, "switch_1", set_option_1);
+    register_float_method(class, "switch_2", set_option_2);
+    register_float_method(class, "switch_3", set_option_3);
+    register_float_method(class, "switch_4", set_option_4);
+    register_float_method(class, "switch_5", set_option_5);
+    register_float_method(class, "switch_6", set_option_6);
+    register_float_method(class, "switch_7", set_option_7);
+    register_float_method(class, "switch_8", set_option_8);
+    register_float_method(class, "switch_9", set_option_9);
+    register_float_method(class, "switch_10", set_option_10);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -128,6 +138,7 @@ unsafe extern "C" fn new() -> *mut c_void {
     };
 
     (*class).input = InputSnapshot::default();
+    (*class).control_connected = [false; 4];
     (*class).cache = cache;
     (*class).processor = processor;
 
@@ -180,8 +191,46 @@ unsafe extern "C" fn tick(class: *mut Class) {
     (*class).output = (*class).cache.tick();
 }
 
-unsafe extern "C" fn set_pre_amp(class: *mut Class, pre_amp: f32) {
-    (*class).input.pre_amp = pre_amp;
+macro_rules! set_control_connected {
+    ( $name:ident, $index:expr ) => {
+        unsafe extern "C" fn $name(class: *mut Class, value: f32) {
+            let connected = value > 0.5;
+            (*class).control_connected[$index] = connected;
+        }
+    };
+}
+
+set_control_connected!(set_control_1_connected, 0);
+set_control_connected!(set_control_2_connected, 1);
+set_control_connected!(set_control_3_connected, 2);
+set_control_connected!(set_control_4_connected, 3);
+
+macro_rules! set_control {
+    ( $name:ident, $index:expr ) => {
+        unsafe extern "C" fn $name(class: *mut Class, value: f32) {
+            (*class).input.control[$index] = if (*class).control_connected[$index] {
+                Some(value)
+            } else {
+                None
+            };
+            update_processor(class);
+        }
+    };
+}
+
+set_control!(set_control_1, 0);
+set_control!(set_control_2, 1);
+set_control!(set_control_3, 2);
+set_control!(set_control_4, 3);
+
+unsafe extern "C" fn set_button(class: *mut Class, value: f32) {
+    let enabled = value > 0.5;
+    (*class).input.button = enabled;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_pre_amp(class: *mut Class, value: f32) {
+    (*class).input.pre_amp = value;
     update_processor(class);
 }
 
