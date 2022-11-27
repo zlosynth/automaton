@@ -197,6 +197,7 @@ dependencies = [
 name = "kaseta-control"
 version = "0.3.0"
 dependencies = [
+ "heapless",
  "kaseta-dsp",
  "libm",
  "micromath 1.1.1",
@@ -512,6 +513,7 @@ dependencies = [
 [[package]]
 name = "sirena"
 version = "0.1.0"
+source = "git+https://github.com/zlosynth/sirena?rev=0ba4c32#0ba4c3212c8aa02eac5feb5bd9b49080886ac0b8"
 dependencies = [
  "heapless",
  "libm",

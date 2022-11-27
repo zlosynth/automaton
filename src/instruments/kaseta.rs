@@ -1,9 +1,12 @@
+// TODO: Implement setting of control
+// TODO: Implement hold button
+
 use core::mem::MaybeUninit;
 use rand::prelude::*;
 use std::os::raw::{c_int, c_void};
 use std::sync::Mutex;
 
-use kaseta_control::{self as control, Cache, ControlAction};
+use kaseta_control::{Cache, DesiredOutput, InputSnapshot};
 use kaseta_dsp::processor::Processor;
 use kaseta_dsp::random::Random;
 use sirena::memory_manager::MemoryManager;
@@ -41,7 +44,10 @@ struct Class {
     led_6_outlet: *mut pd_sys::_outlet,
     led_7_outlet: *mut pd_sys::_outlet,
     led_8_outlet: *mut pd_sys::_outlet,
+    led_9_outlet: *mut pd_sys::_outlet,
     impulse_outlet: *mut pd_sys::_outlet,
+    input: InputSnapshot,
+    output: DesiredOutput,
     cache: Cache,
     processor: Processor,
     signal_dummy: f32,
@@ -58,94 +64,44 @@ pub unsafe extern "C" fn kaseta_tilde_setup() {
         receiver = Class,
         dummy_offset = offset_of!(Class => signal_dummy),
         number_of_inlets = 1,
-        number_of_outlets = 11,
+        number_of_outlets = 12,
         callback = perform
     );
 
-    register_float_method(class, "pre_amp_pot", set_pre_amp_pot);
-    register_float_method(class, "dry_wet_pot", set_dry_wet_pot);
-    register_float_method(class, "drive_pot", set_drive_pot);
-    register_float_method(class, "drive_cv", set_drive_cv);
-    register_float_method(class, "bias_pot", set_bias_pot);
-    register_float_method(class, "bias_cv", set_bias_cv);
-    register_float_method(class, "wow_depth_pot", set_wow_depth_pot);
-    register_float_method(class, "wow_depth_cv", set_wow_depth_cv);
-    register_float_method(class, "delay_length_pot", set_delay_length_pot);
-    register_float_method(class, "delay_length_cv", set_delay_length_cv);
-    register_float_method(
-        class,
-        "delay_head_1_position_pot",
-        set_delay_head_1_position_pot,
-    );
-    register_float_method(
-        class,
-        "delay_head_1_position_cv",
-        set_delay_head_1_position_cv,
-    );
-    register_float_method(
-        class,
-        "delay_head_2_position_pot",
-        set_delay_head_2_position_pot,
-    );
-    register_float_method(
-        class,
-        "delay_head_2_position_cv",
-        set_delay_head_2_position_cv,
-    );
-    register_float_method(
-        class,
-        "delay_head_3_position_pot",
-        set_delay_head_3_position_pot,
-    );
-    register_float_method(
-        class,
-        "delay_head_3_position_cv",
-        set_delay_head_3_position_cv,
-    );
-    register_float_method(
-        class,
-        "delay_head_4_position_pot",
-        set_delay_head_4_position_pot,
-    );
-    register_float_method(
-        class,
-        "delay_head_4_position_cv",
-        set_delay_head_4_position_cv,
-    );
-    register_float_method(class, "delay_range", set_delay_range);
-    register_float_method(class, "delay_rewind_forward", set_delay_rewind_forward);
-    register_float_method(class, "delay_rewind_backward", set_delay_rewind_backward);
-    register_float_method(class, "delay_quantization_6", set_delay_quantization_6);
-    register_float_method(class, "delay_quantization_8", set_delay_quantization_8);
-    register_float_method(
-        class,
-        "delay_head_1_feedback_amp",
-        set_delay_head_1_feedback_amount,
-    );
-    register_float_method(
-        class,
-        "delay_head_2_feedback_amp",
-        set_delay_head_2_feedback_amount,
-    );
-    register_float_method(
-        class,
-        "delay_head_3_feedback_amp",
-        set_delay_head_3_feedback_amount,
-    );
-    register_float_method(
-        class,
-        "delay_head_4_feedback_amp",
-        set_delay_head_4_feedback_amount,
-    );
-    register_float_method(class, "delay_head_1_volume", set_delay_head_1_volume);
-    register_float_method(class, "delay_head_2_volume", set_delay_head_2_volume);
-    register_float_method(class, "delay_head_3_volume", set_delay_head_3_volume);
-    register_float_method(class, "delay_head_4_volume", set_delay_head_4_volume);
-    register_float_method(class, "delay_head_1_pan", set_delay_head_1_pan);
-    register_float_method(class, "delay_head_2_pan", set_delay_head_2_pan);
-    register_float_method(class, "delay_head_3_pan", set_delay_head_3_pan);
-    register_float_method(class, "delay_head_4_pan", set_delay_head_4_pan);
+    register_bang_method(class, tick);
+    register_float_method(class, "pre_amp", set_pre_amp);
+    register_float_method(class, "dry_wet", set_dry_wet);
+    register_float_method(class, "drive", set_drive);
+    register_float_method(class, "bias", set_bias);
+    register_float_method(class, "wow_flutter", set_wow_flut);
+    register_float_method(class, "speed", set_speed);
     register_float_method(class, "tone", set_tone);
+    register_float_method(class, "head_1_position", set_head_1_position);
+    register_float_method(class, "head_2_position", set_head_2_position);
+    register_float_method(class, "head_3_position", set_head_3_position);
+    register_float_method(class, "head_4_position", set_head_4_position);
+    register_float_method(class, "head_1_feedback", set_head_1_feedback);
+    register_float_method(class, "head_2_feedback", set_head_2_feedback);
+    register_float_method(class, "head_3_feedback", set_head_3_feedback);
+    register_float_method(class, "head_4_feedback", set_head_4_feedback);
+    register_float_method(class, "head_1_volume", set_head_1_volume);
+    register_float_method(class, "head_2_volume", set_head_2_volume);
+    register_float_method(class, "head_3_volume", set_head_3_volume);
+    register_float_method(class, "head_4_volume", set_head_4_volume);
+    register_float_method(class, "head_1_pan", set_head_1_pan);
+    register_float_method(class, "head_2_pan", set_head_2_pan);
+    register_float_method(class, "head_3_pan", set_head_3_pan);
+    register_float_method(class, "head_4_pan", set_head_4_pan);
+    register_float_method(class, "option_1", set_option_1);
+    register_float_method(class, "option_2", set_option_2);
+    register_float_method(class, "option_3", set_option_3);
+    register_float_method(class, "option_4", set_option_4);
+    register_float_method(class, "option_5", set_option_5);
+    register_float_method(class, "option_6", set_option_6);
+    register_float_method(class, "option_7", set_option_7);
+    register_float_method(class, "option_8", set_option_8);
+    register_float_method(class, "option_9", set_option_9);
+    register_float_method(class, "option_10", set_option_10);
 }
 
 unsafe fn create_class() -> *mut pd_sys::_class {
@@ -164,15 +120,14 @@ unsafe fn create_class() -> *mut pd_sys::_class {
 unsafe extern "C" fn new() -> *mut c_void {
     let class = pd_sys::pd_new(CLASS.unwrap()) as *mut Class;
 
-    let cache = Cache::default();
+    let cache = Cache::new();
     let processor = {
         let sample_rate = pd_sys::sys_getsr();
-        let mut processor = Processor::new(sample_rate, &mut *MEMORY_MANAGER.lock().unwrap());
-        let attributes = control::cook_dsp_reaction_from_cache(&cache).into();
-        processor.set_attributes(attributes);
-        processor
+        // TODO: Do I need to initialize processor with attributes?
+        Processor::new(sample_rate, &mut *MEMORY_MANAGER.lock().unwrap())
     };
 
+    (*class).input = InputSnapshot::default();
     (*class).cache = cache;
     (*class).processor = processor;
 
@@ -186,9 +141,22 @@ unsafe extern "C" fn new() -> *mut c_void {
     (*class).led_6_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).led_7_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).led_8_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
+    (*class).led_9_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
     (*class).impulse_outlet = pd_sys::outlet_new(&mut (*class).pd_obj, &mut pd_sys::s_signal);
 
     class as *mut c_void
+}
+
+unsafe fn register_bang_method(
+    class: *mut pd_sys::_class,
+    method: unsafe extern "C" fn(*mut Class),
+) {
+    pd_sys::class_addbang(
+        class,
+        Some(std::mem::transmute::<unsafe extern "C" fn(*mut Class), _>(
+            method,
+        )),
+    );
 }
 
 unsafe fn register_float_method(
@@ -208,158 +176,157 @@ unsafe fn register_float_method(
     );
 }
 
-unsafe extern "C" fn set_pre_amp_pot(class: *mut Class, pre_amp: f32) {
-    apply_control_action(class, ControlAction::SetPreAmpPot(pre_amp));
+unsafe extern "C" fn tick(class: *mut Class) {
+    (*class).output = (*class).cache.tick();
 }
 
-unsafe extern "C" fn set_dry_wet_pot(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDryWetPot(value));
+unsafe extern "C" fn set_pre_amp(class: *mut Class, pre_amp: f32) {
+    (*class).input.pre_amp = pre_amp;
+    update_processor(class);
 }
 
-unsafe extern "C" fn set_drive_pot(class: *mut Class, drive: f32) {
-    apply_control_action(class, ControlAction::SetDrivePot(drive));
+unsafe extern "C" fn set_dry_wet(class: *mut Class, value: f32) {
+    (*class).input.dry_wet = value;
+    update_processor(class);
 }
 
-unsafe extern "C" fn set_drive_cv(class: *mut Class, drive: f32) {
-    apply_control_action(class, ControlAction::SetDriveCV(drive));
+unsafe extern "C" fn set_drive(class: *mut Class, value: f32) {
+    (*class).input.drive = value;
+    update_processor(class);
 }
 
-unsafe extern "C" fn set_bias_pot(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetBiasPot(bias));
+unsafe extern "C" fn set_bias(class: *mut Class, value: f32) {
+    (*class).input.bias = value;
+    update_processor(class);
 }
 
-unsafe extern "C" fn set_bias_cv(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetBiasCV(bias));
+unsafe extern "C" fn set_wow_flut(class: *mut Class, value: f32) {
+    (*class).input.wow_flut = value;
+    update_processor(class);
 }
 
-unsafe extern "C" fn set_wow_depth_pot(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetWowFlutterDepthPot(bias));
-}
-
-unsafe extern "C" fn set_wow_depth_cv(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetWowFlutterDepthCV(bias));
-}
-
-unsafe extern "C" fn set_delay_length_cv(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetDelayLengthCV(bias));
-}
-
-unsafe extern "C" fn set_delay_length_pot(class: *mut Class, bias: f32) {
-    apply_control_action(class, ControlAction::SetDelayLengthPot(bias));
-}
-
-unsafe extern "C" fn set_delay_head_1_position_cv(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(0, position));
-}
-
-unsafe extern "C" fn set_delay_head_1_position_pot(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(0, position));
-}
-
-unsafe extern "C" fn set_delay_head_2_position_cv(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(1, position));
-}
-
-unsafe extern "C" fn set_delay_head_2_position_pot(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(1, position));
-}
-
-unsafe extern "C" fn set_delay_head_3_position_cv(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(2, position));
-}
-
-unsafe extern "C" fn set_delay_head_3_position_pot(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(2, position));
-}
-
-unsafe extern "C" fn set_delay_head_4_position_cv(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionCV(3, position));
-}
-
-unsafe extern "C" fn set_delay_head_4_position_pot(class: *mut Class, position: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPositionPot(3, position));
-}
-
-unsafe extern "C" fn set_delay_range(class: *mut Class, enabled: f32) {
-    let enabled = enabled > 0.5;
-    apply_control_action(class, ControlAction::SetDelayRangeSwitch(enabled));
-}
-
-unsafe extern "C" fn set_delay_rewind_forward(class: *mut Class, enabled: f32) {
-    let enabled = enabled > 0.5;
-    apply_control_action(class, ControlAction::SetDelayRewindForwardSwitch(enabled));
-}
-
-unsafe extern "C" fn set_delay_rewind_backward(class: *mut Class, enabled: f32) {
-    let enabled = enabled > 0.5;
-    apply_control_action(class, ControlAction::SetDelayRewindBackwardSwitch(enabled));
-}
-
-unsafe extern "C" fn set_delay_quantization_6(class: *mut Class, enabled: f32) {
-    let enabled = enabled > 0.5;
-    apply_control_action(class, ControlAction::SetDelayQuantizationSix(enabled));
-}
-
-unsafe extern "C" fn set_delay_quantization_8(class: *mut Class, enabled: f32) {
-    let enabled = enabled > 0.5;
-    apply_control_action(class, ControlAction::SetDelayQuantizationEight(enabled));
-}
-
-unsafe extern "C" fn set_delay_head_1_feedback_amount(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadFeedbackAmount(0, value));
-}
-
-unsafe extern "C" fn set_delay_head_2_feedback_amount(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadFeedbackAmount(1, value));
-}
-
-unsafe extern "C" fn set_delay_head_3_feedback_amount(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadFeedbackAmount(2, value));
-}
-
-unsafe extern "C" fn set_delay_head_4_feedback_amount(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadFeedbackAmount(3, value));
-}
-
-unsafe extern "C" fn set_delay_head_1_volume(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadVolume(0, value));
-}
-
-unsafe extern "C" fn set_delay_head_2_volume(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadVolume(1, value));
-}
-
-unsafe extern "C" fn set_delay_head_3_volume(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadVolume(2, value));
-}
-
-unsafe extern "C" fn set_delay_head_4_volume(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadVolume(3, value));
-}
-
-unsafe extern "C" fn set_delay_head_1_pan(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPan(0, value));
-}
-
-unsafe extern "C" fn set_delay_head_2_pan(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPan(1, value));
-}
-
-unsafe extern "C" fn set_delay_head_3_pan(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPan(2, value));
-}
-
-unsafe extern "C" fn set_delay_head_4_pan(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetDelayHeadPan(3, value));
+unsafe extern "C" fn set_speed(class: *mut Class, value: f32) {
+    (*class).input.speed = value;
+    update_processor(class);
 }
 
 unsafe extern "C" fn set_tone(class: *mut Class, value: f32) {
-    apply_control_action(class, ControlAction::SetTone(value));
+    (*class).input.tone = value;
+    update_processor(class);
 }
 
-unsafe fn apply_control_action(class: *mut Class, action: ControlAction) {
-    let dsp_reaction = control::reduce_control_action(action, &mut (*class).cache);
-    (*class).processor.set_attributes(dsp_reaction.into());
+unsafe extern "C" fn set_head_1_position(class: *mut Class, value: f32) {
+    (*class).input.head[0].position = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_2_position(class: *mut Class, value: f32) {
+    (*class).input.head[1].position = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_3_position(class: *mut Class, value: f32) {
+    (*class).input.head[2].position = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_4_position(class: *mut Class, value: f32) {
+    (*class).input.head[3].position = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_1_volume(class: *mut Class, value: f32) {
+    (*class).input.head[0].volume = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_2_volume(class: *mut Class, value: f32) {
+    (*class).input.head[1].volume = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_3_volume(class: *mut Class, value: f32) {
+    (*class).input.head[2].volume = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_4_volume(class: *mut Class, value: f32) {
+    (*class).input.head[3].volume = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_1_feedback(class: *mut Class, value: f32) {
+    (*class).input.head[0].feedback = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_2_feedback(class: *mut Class, value: f32) {
+    (*class).input.head[1].feedback = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_3_feedback(class: *mut Class, value: f32) {
+    (*class).input.head[2].feedback = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_4_feedback(class: *mut Class, value: f32) {
+    (*class).input.head[3].feedback = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_1_pan(class: *mut Class, value: f32) {
+    (*class).input.head[0].pan = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_2_pan(class: *mut Class, value: f32) {
+    (*class).input.head[1].pan = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_3_pan(class: *mut Class, value: f32) {
+    (*class).input.head[2].pan = value;
+    update_processor(class);
+}
+
+unsafe extern "C" fn set_head_4_pan(class: *mut Class, value: f32) {
+    (*class).input.head[3].pan = value;
+    update_processor(class);
+}
+
+macro_rules! set_option {
+    ( $name:ident, $index:expr ) => {
+        unsafe extern "C" fn $name(class: *mut Class, enabled: f32) {
+            let enabled = enabled > 0.5;
+            (*class).input.switch[$index] = enabled;
+            update_processor(class);
+        }
+    };
+}
+
+set_option!(set_option_1, 0);
+set_option!(set_option_2, 1);
+set_option!(set_option_3, 2);
+set_option!(set_option_4, 3);
+set_option!(set_option_5, 4);
+set_option!(set_option_6, 5);
+set_option!(set_option_7, 6);
+set_option!(set_option_8, 7);
+set_option!(set_option_9, 8);
+set_option!(set_option_10, 9);
+
+unsafe fn update_processor(class: *mut Class) {
+    let (attributes, _) = (*class).cache.apply_input_snapshot((*class).input);
+    (*class).processor.set_attributes(attributes.into());
+}
+
+fn bool_to_f32(x: bool) -> f32 {
+    if x {
+        1.0
+    } else {
+        0.0
+    }
 }
 
 fn perform(
@@ -380,20 +347,21 @@ fn perform(
         }
 
         let reaction = class.processor.process(&mut buffer, &mut KasetaRandom);
-        let reaction = control::reduce_dsp_reaction(reaction, &mut (*class).cache);
+        class.cache.apply_dsp_reaction(reaction.into());
 
         for (i, frame) in buffer.iter().enumerate() {
             let index = chunk_index * BUFFER_LEN + i;
             (outlets[0][index], outlets[1][index]) = *frame;
-            outlets[2][index] = if reaction.leds[0] { 1.0 } else { 0.0 };
-            outlets[3][index] = if reaction.leds[1] { 1.0 } else { 0.0 };
-            outlets[4][index] = if reaction.leds[2] { 1.0 } else { 0.0 };
-            outlets[5][index] = if reaction.leds[3] { 1.0 } else { 0.0 };
-            outlets[6][index] = if reaction.leds[4] { 1.0 } else { 0.0 };
-            outlets[7][index] = if reaction.leds[5] { 1.0 } else { 0.0 };
-            outlets[8][index] = if reaction.leds[6] { 1.0 } else { 0.0 };
-            outlets[9][index] = if reaction.leds[7] { 1.0 } else { 0.0 };
-            outlets[10][index] = if reaction.impulse { 1.0 } else { 0.0 };
+            outlets[2][index] = bool_to_f32(class.output.display[0]);
+            outlets[3][index] = bool_to_f32(class.output.display[1]);
+            outlets[4][index] = bool_to_f32(class.output.display[2]);
+            outlets[5][index] = bool_to_f32(class.output.display[3]);
+            outlets[6][index] = bool_to_f32(class.output.display[4]);
+            outlets[7][index] = bool_to_f32(class.output.display[5]);
+            outlets[8][index] = bool_to_f32(class.output.display[6]);
+            outlets[9][index] = bool_to_f32(class.output.display[7]);
+            outlets[10][index] = bool_to_f32(class.output.impulse_led);
+            outlets[11][index] = bool_to_f32(class.output.impulse_trigger);
         }
     }
 }
