@@ -6,7 +6,7 @@ use rand::prelude::*;
 use std::os::raw::{c_int, c_void};
 use std::sync::Mutex;
 
-use kaseta_control::{Cache, DesiredOutput, InputSnapshot};
+use kaseta_control::{DesiredOutput, InputSnapshot, Store};
 use kaseta_dsp::processor::Processor;
 use kaseta_dsp::random::Random;
 use sirena::memory_manager::MemoryManager;
@@ -49,7 +49,7 @@ struct Class {
     input: InputSnapshot,
     control_connected: [bool; 4],
     output: DesiredOutput,
-    cache: Cache,
+    cache: Store,
     processor: Processor,
     signal_dummy: f32,
 }
@@ -130,7 +130,7 @@ unsafe fn create_class() -> *mut pd_sys::_class {
 unsafe extern "C" fn new() -> *mut c_void {
     let class = pd_sys::pd_new(CLASS.unwrap()) as *mut Class;
 
-    let cache = Cache::new();
+    let cache = Store::new();
     let processor = {
         let sample_rate = pd_sys::sys_getsr();
         // TODO: Do I need to initialize processor with attributes?
@@ -366,7 +366,10 @@ set_option!(set_option_9, 8);
 set_option!(set_option_10, 9);
 
 unsafe fn update_processor(class: *mut Class) {
-    let (attributes, _) = (*class).cache.apply_input_snapshot((*class).input);
+    let attributes = (*class)
+        .cache
+        .apply_input_snapshot((*class).input)
+        .dsp_attributes;
     (*class).processor.set_attributes(attributes.into());
 }
 
