@@ -197,6 +197,7 @@ dependencies = [
 name = "kaseta-control"
 version = "0.4.0"
 dependencies = [
+ "crc",
  "heapless",
  "kaseta-dsp",
  "libm",

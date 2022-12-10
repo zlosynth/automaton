@@ -80,7 +80,7 @@
 #X msg 177 60 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 4 256;
+#fcfcfc #000000 #000000 8 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2786,7 +2786,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2840,7 +2840,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -2948,7 +2948,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 5 256;
+#fcfcfc #000000 #000000 8 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -3654,7 +3654,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 1 256;
+#fcfcfc #000000 #000000 2 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4193,7 +4193,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 7 256;
+#fcfcfc #000000 #000000 9 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -4517,7 +4517,7 @@
 #X msg 177 81 0;
 #X msg 83 341 \; pd-main.pd obj 200 200 \$1 \$2;
 #X obj 162 280 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
-#fcfcfc #000000 #000000 2 256;
+#fcfcfc #000000 #000000 3 256;
 #X obj 64 387 t b b;
 #X msg 64 509 loadbang;
 #X obj 91 411 s SAVE-S;
@@ -6732,19 +6732,21 @@ and send to the name of the module \, for example [s basic-osc];
 7 0 10 #fcfcfc #000000 #000000;
 #X obj 463 229 kaseta 2;
 #X obj 579 702 maestro4 2;
-#X obj 1044 668 scope 6;
-#X obj 1331 109 achordion 4;
+#X obj 1187 810 scope 6;
+#X obj 1328 167 achordion 4;
 #X obj 1480 403 hsl 128 15 0 120 0 0 empty empty empty -2 -8 0 10 #fcfcfc
 #000000 #000000 0 1;
 #X floatatom 1473 430 5 0 0 0 - - - 0;
-#X obj 1068 653 hsl 128 15 0 10 0 1 empty empty empty -2 -8 0 10 #fcfcfc
-#000000 #000000 6100 1;
-#X obj 1044 650 *~;
+#X obj 1211 795 hsl 128 15 0 10 0 1 empty empty empty -2 -8 0 10 #fcfcfc
+#000000 #000000 1500 1;
+#X obj 1187 792 *~;
 #X obj 1318 493 clip~ -2 2;
 #X obj 1345 436 *~;
-#X obj 517 47 clock 7;
-#X obj 645 133 *~ 0.5;
-#X obj 645 156 +~ 0.5;
+#X obj 406 41 clock 9;
+#X obj 406 121 +~ 1;
+#X obj 406 144 *~ 0.5;
+#X text 532 443 fb filter;
+#X text 534 355 osc;
 #X connect 11 0 12 0;
 #X connect 11 0 18 0;
 #X connect 11 1 12 2;
@@ -6756,6 +6758,5 @@ and send to the name of the module \, for example [s basic-osc];
 #X connect 19 0 11 0;
 #X connect 20 0 19 0;
 #X connect 21 0 22 0;
-#X connect 21 0 13 0;
 #X connect 22 0 23 0;
 #X connect 23 0 11 1;
